@@ -239,7 +239,7 @@ select.chip.on{background-color:#E3F5F4}
 <div class="cols">
 <div><h4>INICIO</h4><a href="#/Main">Acceso y selector de rol</a><a href="#/Permisos">Roles y permisos</a></div>
 <div><h4>ADMIN PRESTO</h4><a href="#/AdminResumen">Resumen</a><a href="#/AdminEscuelas">Escuelas</a><a href="#/AdminNuevaEscuela">Nueva escuela</a></div>
-<div><h4>DUEÑO / DIRECTOR</h4><a href="#/DirDashboard">Resumen</a><a href="#/DirAlumnos">Alumnos</a><a href="#/DirFicha?id=s1">Ficha del alumno</a><a href="#/DirNuevoAlumno">Nuevo alumno</a><a href="#/DirEstado?id=s1">Cambiar estado</a><a href="#/DirCalendario">Calendario mensual</a><a href="#/DirCalendarioDia">Calendario del día</a><a href="#/DirRecuperaciones">Recuperaciones</a><a href="#/DirAgendarRecup">Agendar recuperación</a><a href="#/DirPersonal">Profesores y personal</a><a href="#/DirSedes">Sedes</a><a href="#/DirConfiguracion">Configuración</a></div>
+<div><h4>DUEÑO / DIRECTOR</h4><a href="#/DirDashboard">Resumen</a><a href="#/DirAlumnos">Alumnos</a><a href="#/DirFicha?id=s1">Ficha del alumno</a><a href="#/DirNuevoAlumno">Nuevo alumno</a><a href="#/DirEstado?id=s1">Cambiar estado</a><a href="#/DirSemana">Calendario semanal</a><a href="#/DirCalendario">Calendario mensual</a><a href="#/DirCalendarioDia">Calendario del día</a><a href="#/DirRecuperaciones">Recuperaciones</a><a href="#/DirAgendarRecup">Agendar recuperación</a><a href="#/DirPersonal">Profesores y personal</a><a href="#/DirSedes">Sedes</a><a href="#/DirConfiguracion">Configuración</a></div>
 <div><h4>RECEPCIÓN</h4><a href="#/RecHoy">Hoy en recepción</a></div>
 <div><h4>PROFESOR (PORTAL WEB)</h4><a href="#/ProfAgenda">Mi agenda</a><a href="#/ProfAsistencia">Tomar asistencia</a><a href="#/ProfFaltaAnticipada">Mi ausencia</a><a href="#/ProfAlumnos">Mis alumnos</a></div>
 <div><h4>PADRE (PORTAL WEB)</h4><a href="#/PadreInicio">Inicio</a><a href="#/PadreReagendar">Agendar recuperación</a><a href="#/PadreProgreso">Progreso</a><a href="#/PadreAvisos">Avisos</a></div>
@@ -457,7 +457,7 @@ select.chip.on{background-color:#E3F5F4}
 <header class="top"><div class="crumb">Armonía · Calendario · <b>{{crumb}}</b></div><div class="topr"><select class="sel" aria-label="Sede" sc-options="{{siteOpts}}" value="{{siteSel}}" disabled="{{isRec}}" sc-camel-on-change="{{pickSite}}"></select><span class="av">{{me.i}}</span></div></header>
 <main class="main">
 <div class="head"><div><h1 class="h1">{{title}}</h1><p class="sub">{{sub}}</p></div><div class="acts"><button class="btn sec" sc-camel-on-click="{{print}}">Imprimir asistencias del día</button><a class="btn" href="DirAgendarRecup.dc.html?d={{date}}">Agendar recuperación</a></div></div>
-<div class="chips"><button class="chip on">Día</button><sc-if value="{{!isRec}}"><a class="chip" href="DirCalendario.dc.html?m={{month}}">Mes</a></sc-if><span style="width: 12px"></span><button class="chip" sc-camel-on-click="{{prev}}" aria-label="Día anterior">‹</button><button class="chip" sc-camel-on-click="{{today}}">Hoy</button><button class="chip" sc-camel-on-click="{{next}}" aria-label="Día siguiente">›</button><input class="sel" type="date" value="{{date}}" sc-camel-on-change="{{pickDate}}" aria-label="Elegir fecha" style="min-height: 36px"><select class="sel" aria-label="Profesor" sc-options="{{tOpts}}" value="{{tSel}}" sc-camel-on-change="{{pickT}}" style="min-height: 36px"></select><span style="flex: 1"></span><span class="sem v"><i></i>Libre</span><span class="bg">Clase</span><span class="bg or">Con recuperación</span></div>
+<div class="chips"><button class="chip on">Día</button><a class="chip" href="DirCalendario.dc.html?m={{month}}">Mes</a><span style="width: 12px"></span><button class="chip" sc-camel-on-click="{{prev}}" aria-label="Día anterior">‹</button><button class="chip" sc-camel-on-click="{{today}}">Hoy</button><button class="chip" sc-camel-on-click="{{next}}" aria-label="Día siguiente">›</button><input class="sel" type="date" value="{{date}}" sc-camel-on-change="{{pickDate}}" aria-label="Elegir fecha" style="min-height: 36px"><select class="sel" aria-label="Profesor" sc-options="{{tOpts}}" value="{{tSel}}" sc-camel-on-change="{{pickT}}" style="min-height: 36px"></select><span style="flex: 1"></span><span class="sem v"><i></i>Libre</span><span class="bg">Clase</span><span class="bg or">Con recuperación</span></div>
 <sc-if value="{{hol}}"><div class="al"><div><b>Feriado: {{hol.n}}</b><p>No hay clases. No cuenta como falta ni genera recuperación.</p></div></div></sc-if>
 <sc-if value="{{empty}}"><div class="al in"><div><b>Sin clases programadas este día</b><p>Elige otro día o crea un bloque desde el calendario mensual.</p></div></div></sc-if>
 <div class="g21" style="grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr)">
@@ -498,7 +498,7 @@ select.chip.on{background-color:#E3F5F4}
 <div class="right">
 <header class="top"><div class="crumb">Armonía · <b>Resumen</b> · {{siteLabel}}</div><div class="topr"><select class="sel" aria-label="Sede" sc-options="{{siteOpts}}" value="{{siteSel}}" disabled="{{isRec}}" sc-camel-on-change="{{pickSite}}"></select><button class="bell" aria-label="Notificaciones"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><i></i></button><span class="av">{{me.i}}</span></div></header>
 <main class="main"><sc-if value="{{hasTeacherNotices}}"><div class="al"><div><b>Ausencias docentes · pendientes de coordinación</b><sc-for list="{{teacherNotices}}" as="notice"><p>{{notice.text}}</p></sc-for><p>Los alumnos conservan su asistencia. Falta coordinar cobertura o reprogramación.</p></div></div></sc-if>
-<div class="head"><div><div class="eyebrow">MIÉRCOLES 30 DE SEPTIEMBRE · {{siteUp}}</div><h1 class="h1">Buen día, Miguel</h1><p class="sub">{{subTxt}}</p></div><div class="acts"><a class="btn sec" href="DirCalendario.dc.html">Ver calendario</a><a class="btn" href="DirNuevoAlumno.dc.html">+ Nuevo alumno</a></div></div>
+<div class="head"><div><div class="eyebrow">MIÉRCOLES 30 DE SEPTIEMBRE · {{siteUp}}</div><h1 class="h1">Buen día, Miguel</h1><p class="sub">{{subTxt}}</p></div><div class="acts"><a class="btn sec" href="#/DirSemana">Ver calendario</a><a class="btn" href="DirNuevoAlumno.dc.html">+ Nuevo alumno</a></div></div>
 <div class="stats">
 <div class="stat"><div class="l">Alumnos activos</div><div class="v">{{k.a}}</div><div class="d">+{{newM}} este mes · {{retM}} retirados</div></div>
 <div class="stat"><div class="l">Cursos activos</div><div class="v">{{k.c}}</div><div class="d">{{multi}} alumnos con 2 o más instrumentos</div></div>
@@ -1005,7 +1005,7 @@ select.chip.on{background-color:#E3F5F4}
 <div class="card"><div class="cb"><h3 class="h3">Trazabilidad</h3><p class="s m" style="margin: 6px 0 0">Nada se borra: alumnos, cursos, asistencias y créditos quedan en el historial, con quién hizo cada cambio y cuándo.</p></div></div>
 </div>
 </div></template>
-<template id="tpl-DirAlumnoCreado" data-title="Alumno registrado"><div class="main" style="max-width:850px;margin:60px auto"><div class="card"><div class="cb"><span class="bg ok">Registro completado</span><h1 class="h1" style="margin-top:20px">{{name}} ya está inscrito</h1><p class="m">Su representante, sus cursos y los horarios seleccionados quedaron vinculados.</p><div class="al in" style="margin:24px 0">{{summary}}</div><div class="acts"><a class="btn" href="DirFicha.dc.html?id={{id}}">Ver ficha del alumno</a><a class="btn ghost" href="DirCalendario.dc.html">Ver calendario</a><a class="btn ghost" href="DirNuevoAlumno.dc.html">Agregar otro alumno</a><a class="btn ghost" href="DirAlumnos.dc.html">Volver a alumnos</a></div></div></div></div></template>
+<template id="tpl-DirAlumnoCreado" data-title="Alumno registrado"><div class="main" style="max-width:850px;margin:60px auto"><div class="card"><div class="cb"><span class="bg ok">Registro completado</span><h1 class="h1" style="margin-top:20px">{{name}} ya está inscrito</h1><p class="m">Su representante, sus cursos y los horarios seleccionados quedaron vinculados.</p><div class="al in" style="margin:24px 0">{{summary}}</div><div class="acts"><a class="btn" href="DirFicha.dc.html?id={{id}}">Ver ficha del alumno</a><a class="btn ghost" href="#/DirSemana">Ver calendario</a><a class="btn ghost" href="DirNuevoAlumno.dc.html">Agregar otro alumno</a><a class="btn ghost" href="DirAlumnos.dc.html">Volver a alumnos</a></div></div></div></div></template>
 <template id="tpl-ProfAgenda" data-title="Profesor · Mi agenda"><!-- title: Profesor · Mi agenda -->
 <div class="app professor-web"><aside class="side"><div class="brand"><span class="mark">♫</span>presto<b>lab</b></div><div class="ws"><b>Portal del profesor</b><small>Clases y seguimiento académico</small></div><nav class="nav" aria-label="Navegación del profesor"><div class="navlabel">MI ESCUELA</div><a class="on" href="ProfAgenda.dc.html">Mi agenda</a><a class="" href="ProfAlumnos.dc.html">Mis alumnos</a><a class="" href="ProfAsistencia.dc.html">Asistencia</a><a class="" href="ProfFaltaAnticipada.dc.html">Mi ausencia</a></nav><a class="switch" href="Main.dc.html">← Cambiar de rol</a></aside><section class="prof-workspace">
 <header class="ph"><div style="display: flex; align-items: center; gap: 10px"><span class="mark" style="width: 30px; height: 30px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="16" cy="16" r="3"></circle></svg></span><div><div class="t">Hola, Andrea</div><small>{{hoyTxt}}</small></div></div><a class="back" href="Main.dc.html" aria-label="Cambiar de rol" title="Cambiar de rol"><span class="av sm">AG</span></a></header>
@@ -1313,7 +1313,7 @@ select.chip.on{background-color:#E3F5F4}
 /* PrestoLab · datos compartidos de la demo y reglas de negocio */
 (function () {
   'use strict';
-  const KEY = 'prestolab-phase1-v3';
+  const KEY = 'prestolab-flexible-v1';
   const TODAY = '2026-09-30';
   const NOW = '14:52';
 
@@ -2110,7 +2110,7 @@ App.register('DirCalendario', class extends DCLogic {
       sub: (site ? 'Sede ' + Q.site(site).n : 'Todas las sedes') + ' · ' + total + ' clases programadas · ' + hols + (hols === 1 ? ' feriado' : ' feriados') + '',
       dayLink: ym === D.TODAY.slice(0, 7) ? D.TODAY : first,
       prev: () => setM(-1), next: () => setM(1), today: () => this.setState({ ym: D.TODAY.slice(0, 7) }),
-      week: () => App.go('DirCalendarioDia?d=' + (ym === D.TODAY.slice(0, 7) ? D.TODAY : first)),
+      week: () => App.go('DirSemana?d=' + (ym === D.TODAY.slice(0, 7) ? D.TODAY : first)),
       tOpts: [{ v: '', l: 'Todos los profesores' }].concat(S.teachers.map(t => ({ v: t.id, l: t.n }))), tSel, pickT: e => this.setState({ t: e.target.value }),
       catOpts: [{ v: '', l: 'Todas las categorías' }, { v: 'c', l: 'Clase regular' }, { v: 'r', l: 'Recuperación' }], catSel: cat, pickCat: e => this.setState({ cat: e.target.value })
     }, plBlockForm(this));
@@ -3133,6 +3133,480 @@ PL.commonVals=function(screen){const vals=teacherAbsenceBase.call(this,screen);c
  vals.teacherNotices=relevant.map(a=>{const b=PL.Q.block(a.bid);return {text:PL.Q.teacher(a.teacher).n+' · '+PL.D.short(a.date)+' '+b.time+' · '+b.name+' · '+PL.Q.site(b.site).n+(a.from?' · Ausencia: '+a.from+(a.allDay?' (día completo)':' '+a.startTime)+' a '+a.to+(a.allDay?'':' '+a.endTime):'')+(a.replacement?' · Reemplazo propuesto: '+PL.Q.teacher(a.replacement).n:' · Reemplazo por coordinar')};});
  vals.hasTeacherNotices=relevant.length>0;return vals;
 };
+
+/* Calendario flexible · ampliación local de demostración, octubre 2026. */
+(function () {
+  const { Q, A, D } = PL;
+  const uid = p => p + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+  const init = () => {
+    const S=PL.S;
+    S.flexBookings ||= []; S.flexRemoved ||= []; S.flexClosures ||= []; S.ensembles ||= [];
+    if(!S.flexVersion){
+      S.flexVersion=1;
+      S.students.forEach(s=>{ s.program ||= 'Inscrito'; s.referredBy ||= ''; s.contact ||= {tel:'',mail:''}; });
+      const demo=A.addStudent({first:'Lucía',last:'Demo Reto',birth:'2001-05-10',site:'au',start:D.TODAY,rep:'',parent:'Referencia',tel:'',mail:'',how:'Referido',courses:[{inst:'Piano',b:'b7',level:'Por evaluar',pay:'Sin pago',type:'Reto 21'}]});
+      demo.program='Reto 21';demo.rep={n:'',parent:'Referencia',tel:'',mail:''};demo.referredBy='Andrea Demo';demo.contact={tel:'',mail:''};demo.courses[0].flexVersions=[{from:D.TODAY,mode:'variable',slots:[]}];demo.contracts[0].label='Prueba gratuita · Reto 21';
+      const c=Q.student('s6').courses[0]; c.flexVersions=[{from:'2026-10-05',mode:'variable',slots:[]}];
+    }
+    S.base.ret=0; S.base.grad=0;
+    PL.save();
+  };
+  init();
+  const reset=A.reset;A.reset=()=>{reset();init();};
+  const minutes=t=>{const [h,m]=t.split(':').map(Number);return h*60+m;};
+  const overlap=(a,b)=>minutes(a.time)<minutes(b.time)+(b.duration||45)&&minutes(b.time)<minutes(a.time)+(a.duration||45);
+  const week=d=>D.add(d,-((D.dow(d)+6)%7));
+  const key=(s,c,b,d)=>[s,c,b,d].join('|');
+  const regular=s=>s.program!=='Reto 21';
+  const version=(c,d)=>[...(c.flexVersions||[])].filter(v=>v.from<=d).sort((a,b)=>b.from.localeCompare(a.from))[0]||{mode:'habitual',slots:(Q.block(c.b)?.days||[]).slice(0,2).map(day=>({b:c.b,day}))};
+  const closed=(b,d)=>PL.S.flexClosures.find(x=>x.date===d&&x.b===b);
+  function slots(s,c,d){
+    if(!Q.isActive(s)||c.status!=='Activo'||d<(c.start||Q.startOf(s)))return [];
+    const v=version(c,d);
+    const base=v.mode==='habitual'?v.slots.filter(x=>x.day===D.dow(d)).map(x=>({sid:s.id,cid:c.id,b:x.b,date:d,status:'confirmed',key:key(s.id,c.id,x.b,d)})):[];
+    return base.filter(x=>!PL.S.flexRemoved.includes(x.key)).concat(PL.S.flexBookings.filter(x=>x.sid===s.id&&x.cid===c.id&&x.date===d));
+  }
+  const reservations=(d)=>PL.S.students.flatMap(s=>Q.activeCourses(s).flatMap(c=>slots(s,c,d)));
+  const roster=(bid,d)=>reservations(d).filter(x=>x.b===bid);
+  const oldEnrolled=Q.enrolled;
+  Q.enrolled=(bid,d)=>d?PL.S.students.filter(s=>roster(bid,d).some(x=>x.sid===s.id&&x.status==='confirmed')):oldEnrolled(bid,d);
+  const blocksOn=Q.blocksOn;Q.blocksOn=(d,site)=>blocksOn(d,site).filter(b=>!closed(b.id,d));
+  Q.occ=(bid,d)=>d?roster(bid,d).length+Q.recupsIn(bid,d).length:oldEnrolled(bid).length;
+  Q.kpis=site=>{const ss=Q.siteStudents(site).filter(Q.isActive);return {a:ss.filter(regular).length,c:ss.filter(regular).reduce((n,s)=>n+Q.activeCourses(s).length,0)};};
+  function stats(site){
+    const all=Q.siteStudents(site).filter(Q.isActive),ss=all.filter(regular);
+    const paid=s=>Q.activeCourses(s).some(c=>c.type==='Pagante');
+    return [{l:'Alumnos inscritos',v:ss.length,d:'Personas únicas · sin Reto 21'}, {l:'Cursos de instrumento',v:ss.reduce((n,s)=>n+Q.activeCourses(s).length,0),d:'Dos instrumentos cuentan como dos cursos'}, {l:'Alumnos pagantes',v:ss.filter(paid).length,d:'Con al menos un curso de tipo Pagante'}, {l:'Pagantes con varios instrumentos',v:ss.filter(s=>paid(s)&&new Set(Q.activeCourses(s).map(c=>c.inst)).size>1).length,d:'Subgrupo de alumnos pagantes'}, {l:'Alumnos con beca',v:ss.filter(s=>Q.activeCourses(s).some(c=>c.type==='Becado')).length,d:'Pueden tener otro instrumento pagante'}, {l:'Reto 21',v:all.filter(s=>!regular(s)).length,d:'Prueba gratuita · sin matrícula'}];
+  }
+  function check(s,c,bid,d,ignore){
+    const b=Q.block(bid);
+    if(!b||!d||!b.days.includes(D.dow(d))||b.inst!==c.inst||b.site!==s.site)return 'Elige un bloque del instrumento y sede del alumno en ese día.';
+    if(d<D.TODAY||(d===D.TODAY&&b.time<=D.NOW))return 'Elige una clase que todavía no haya empezado.';
+    if(d<(c.start||Q.startOf(s)))return 'La clase debe ser posterior al inicio del curso.';
+    if(Q.holiday(d)||closed(bid,d))return 'La fecha o el bloque está cerrado.';
+    const rs=reservations(d).filter(x=>x.key!==ignore);
+    if(rs.filter(x=>x.b===bid).length+Q.recupsIn(bid,d).length>=b.cap)return 'Ese bloque ya no tiene cupo.';
+    if(rs.some(x=>x.sid===s.id&&overlap(Q.block(x.b),b))||PL.S.credits.some(x=>x.st===s.id&&x.status==='Agendada'&&x.sch?.date===d&&overlap(Q.block(x.sch.b),b)))return 'El alumno ya tiene otra clase en ese horario.';
+    if(PL.S.ensembles.some(x=>x.date===d&&x.students.includes(s.id)&&overlap(x,b)))return 'El alumno tiene ensamble en ese horario.';
+    if(PL.S.ensembles.some(x=>x.date===d&&overlap(x,b)&&(x.t===b.t||(x.site===b.site&&x.aula===b.aula))))return 'El profesor o el aula tienen ensamble en ese horario.';
+    if(rs.some(x=>x.b!==bid&&overlap(Q.block(x.b),b)&&(Q.block(x.b).t===b.t||(Q.block(x.b).site===b.site&&Q.block(x.b).aula===b.aula))))return 'Hay un cruce de profesor o aula con otro bloque ocupado.';
+    return '';
+  }
+  function book(sid,cid,bid,d,status='confirmed',source){
+    const s=Q.student(sid),c=s?.courses.find(x=>x.id===cid);if(!s||!c||!Q.isActive(s)||c.status!=='Activo')return 'Selecciona un alumno y curso activos.';
+    if(source&&closed(source.b,source.date))return 'La escuela canceló esta clase. Usa su crédito de recuperación.';
+    const err=check(s,c,bid,d,source?.key);if(err)return err;
+    const start=week(d);const existing=[];for(let i=0;i<7;i++)existing.push(...slots(s,c,D.add(start,i)).filter(x=>x.key!==source?.key&&!Q.holiday(x.date)));
+    if(regular(s)&&existing.length>=2)return 'Ya tiene sus dos clases de este instrumento esta semana. Para recuperar usa un crédito.';
+    if(source){PL.S.flexBookings=PL.S.flexBookings.filter(x=>x.key!==source.key);if(!PL.S.flexRemoved.includes(source.key))PL.S.flexRemoved.push(source.key);}
+    PL.S.flexBookings.push({sid,cid,b:bid,date:d,status,key:uid('booking'),origin:source?.key||''});
+    A.log(sid,(source?'Clase movida':'Clase programada')+' · '+c.inst+' · '+d+' '+Q.block(bid).time);return '';
+  }
+  function setPattern(sid,cid,mode,patterns,from){
+    const s=Q.student(sid),c=s?.courses.find(x=>x.id===cid);if(!c||!Q.isActive(s)||c.status!=='Activo')return 'Selecciona un curso activo.';
+    if(!from||from<D.TODAY)return 'La fecha de inicio no puede estar en el pasado.';
+    if(patterns.some(x=>!Q.block(x.b)||!Q.block(x.b).days.includes(x.day)))return 'Selecciona bloques y días válidos.';
+    if(mode==='habitual'&&patterns.length!==2)return 'El horario habitual necesita dos clases por instrumento.';
+    if(mode==='habitual'&&patterns[0].b===patterns[1].b&&patterns[0].day===patterns[1].day)return 'Selecciona dos clases distintas.';
+    const prior=c.flexVersions;const future=(prior||[]).filter(x=>x.from<from);c.flexVersions=[...future,{from,mode,slots:mode==='habitual'?patterns:[]}];
+    // Comprobar un ciclo de agenda cercano; cierres son excepciones, no invalidan la serie.
+    for(let i=0;i<42;i++){
+      const d=D.add(from,i);for(const r of slots(s,c,d)){
+        if(Q.holiday(d)||closed(r.b,d))continue;
+        const err=check(s,c,r.b,d,r.key);
+        if(err){c.flexVersions=prior;return D.short(d)+': '+err;}
+      }
+    }
+    if(regular(s)){for(let i=0;i<42;i+=7){const start=week(D.add(from,i));let n=0;for(let j=0;j<7;j++){const date=D.add(start,j);if(!Q.holiday(date))n+=slots(s,c,date).length;}if(n>2){c.flexVersions=prior;return 'Ya hay reservas puntuales en la semana del '+D.short(start)+'. Revísalas antes de repetir dos horarios.';}}}
+    A.log(sid,'Horario '+mode+' de '+c.inst+' desde '+from);return '';
+  }
+  function cancelBlock(bid,date,reason){
+    if(closed(bid,date))return 0;
+    const b=Q.block(bid);let n=0;
+    for(const r of roster(bid,date)){
+      const s=Q.student(r.sid);PL.S.att[bid+'|'+date+'|'+s.id]={st:'Clase cancelada',by:'Escuela',reason};
+      if(r.status==='confirmed'&&regular(s)&&!PL.S.credits.some(c=>c.st===s.id&&c.bid===bid&&c.date===date&&c.status!=='Anulada')){const cr=A.addCredit(s.id,b.inst,'Clase cancelada',date);cr.bid=bid;n++;}
+      A.log(s.id,'Escuela canceló '+b.inst+' · '+date+' · '+reason);
+    }
+    Q.recupsIn(bid,date).forEach(c=>{c.status='Activa';c.sch=null;});
+    PL.S.flexClosures.push({b:bid,date,reason});return n;
+  }
+  window.FX={slots,roster,reservations,version,closed,check,book,setPattern,cancelBlock,stats,week};
+  const saveAttendance=A.saveAttendance;
+  A.saveAttendance=(bid,d,marks,notes)=>{
+    const b=Q.block(bid);if(!b||closed(bid,d))return 0;
+    const regularMarks={}, trialMarks={};Object.entries(marks).forEach(([sid,v])=>{if(Q.enrolled(bid,d).some(s=>s.id===sid)||Q.recupsIn(bid,d).some(c=>c.st===sid))(regular(Q.student(sid))?regularMarks:trialMarks)[sid]=v;});
+    const n=saveAttendance(bid,d,regularMarks,notes);
+    if(d<=D.TODAY&&!Q.holiday(d))Object.entries(trialMarks).forEach(([sid,st])=>{PL.S.att[bid+'|'+d+'|'+sid]={st,by:'prof',reason:'Reto 21 · sin política de créditos definida'};});
+    return n;
+  };
+  const anticipada=A.anticipada;A.anticipada=(sid,bid,ds,motivo)=>{const s=Q.student(sid);const dates=ds.filter(d=>slots(s,s.courses.find(c=>c.inst===Q.block(bid).inst),d).some(r=>r.b===bid&&r.status==='confirmed')&&!closed(bid,d));if(!regular(s)){A.toast('Reto 21 no tiene política de recuperaciones definida.');return 0;}return anticipada(sid,bid,dates,motivo);};
+  const schedule=A.schedule;A.schedule=(id,bid,d,by,notify)=>{
+    const cr=PL.S.credits.find(x=>x.id===id),s=cr&&Q.student(cr.st),c=s?.courses.find(x=>x.inst===cr.inst&&x.status==='Activo');
+    if(!c||check(s,c,bid,d)){A.toast(c?check(s,c,bid,d):'El curso no está activo.');return false;}
+    // Una recuperación puede utilizar otro día del bloque habitual cuando el alumno no tiene reserva allí.
+    const old=s.courses.map(x=>x.b);s.courses.forEach(x=>{if(x.b===bid)x.b='__recover__';});
+    let result;try{result=schedule(id,bid,d,by,notify);}finally{s.courses.forEach((x,i)=>x.b=old[i]);}return result;
+  };
+  plSlots=function(stu,inst,date,anyInst){if(Q.holiday(date))return [];return Q.blocksOn(date,stu.site).filter(b=>anyInst||b.inst===inst).map(b=>{const c=Q.activeCourses(stu).find(c=>c.inst===inst);const error=c?check(stu,{...c,inst:b.inst},b.id,date):'Curso inactivo';const free=b.cap-Q.occ(b.id,date);return {b,free,off:!!error,s:error||free+' cupos'};});};
+  // Una misma matrícula conserva su identidad al cambiar de bloque.
+  Q.streak=s=>Math.max(0,...Q.activeCourses(s).map(c=>{let n=0;const entries=Object.entries(PL.S.att).filter(([k])=>{const [bid,d,sid]=k.split('|');return sid===s.id&&Q.block(bid)?.inst===c.inst&&d<=D.TODAY&&!Q.holiday(d);}).sort(([a],[b])=>b.split('|')[1].localeCompare(a.split('|')[1]));for(const [,v] of entries){if(v.st==='Presente')break;if(v.st==='Ausente'||v.st==='Falta anticipada')n++;}return n;}));
+  const common=PL.commonVals;PL.commonVals=function(screen){const v=common(screen);v.flexStats=stats(PL.S.session.site||'');v.flexCountNote='Datos de las fichas de demostración. Pagantes y becados pueden coincidir si estudian varios instrumentos.';
+    if(['dir','rec'].includes(PL.S.session.role))v.nav.forEach(g=>g.items.forEach(it=>{if(['Calendario','Calendario del día'].includes(it.label)){it.href='#/DirSemana';it.label='Calendario';it.cls=['DirSemana','DirCalendario','DirCalendarioDia'].includes(screen.name)?'on':'';}}));return v;};
+  const route=PL.onRoute;PL.onRoute=(name,p)=>{if(name==='DirCalendario'&&PL.S.session.role==='rec'){const r=route('DirSemana',p);return r==='DirSemana'?name:r;}return route(name,p);};
+  function template(name,body,title){const t=document.createElement('template');t.id='tpl-'+name;t.dataset.title=title;const shell=document.getElementById('tpl-DirCalendario').content.cloneNode(true);shell.querySelector('main').innerHTML=body;t.content.appendChild(shell);document.body.appendChild(t);}
+  const statsHtml='<div class="fx-stats"><sc-for list="{{flexStats}}" as="x"><div class="stat"><div class="l">{{x.l}}</div><div class="v">{{x.v}}</div><div class="d">{{x.d}}</div></div></sc-for></div><p class="xs m">{{flexCountNote}}</p>';
+  ['DirAlumnos','DirDashboard'].forEach(name=>{const m=document.getElementById('tpl-'+name).content.querySelector('main');const node=m.querySelector('.stats');if(node)node.remove();const div=document.createElement('div');div.innerHTML=statsHtml;m.insertBefore(div,m.querySelector('.head')?.nextSibling||m.firstChild);});
+  ['DirCalendario','DirCalendarioDia'].forEach(name=>{const t=document.getElementById('tpl-'+name);const chips=[...t.content.querySelectorAll('.chips')].find(el=>[...el.children].some(c=>c.textContent.trim()==='Día'));const a=document.createElement('a');a.href=name==='DirCalendarioDia'?'#/DirSemana?d={{date}}':'#/DirSemana?d={{dayLink}}';a.className='chip';a.textContent='Semana';chips.insertBefore(a,[...chips.children].find(c=>c.textContent.trim()==='Mes'));});
+  template('DirSemana',`
+<div class="head"><div><div class="eyebrow">AGENDA FLEXIBLE · DEMOSTRACIÓN</div><h1 class="h1">Semana del {{label}}</h1><p class="sub">2 clases por instrumento · ensamble y pruebas por separado</p></div><div class="acts"><button class="btn sec" sc-camel-on-click="{{toggleClose}}">Bloquear / cancelar</button><button class="btn sec" sc-camel-on-click="{{toggleEnsemble}}">+ Ensamble</button><a class="btn" href="#/DirProgramar">+ Programar alumno</a></div></div>
+<div class="chips"><a class="chip" href="DirCalendarioDia.dc.html?d={{start}}">Día</a><span class="chip on">Semana</span><a class="chip" href="DirCalendario.dc.html?m={{month}}">Mes</a><button class="chip" sc-camel-on-click="{{prev}}">‹ Anterior</button><button class="chip" sc-camel-on-click="{{today}}">Esta semana</button><button class="chip" sc-camel-on-click="{{next}}">Siguiente ›</button><select class="sel" aria-label="Profesor" sc-options="{{teachers}}" value="{{teacher}}" sc-camel-on-change="{{pickTeacher}}"></select></div>
+<sc-if value="{{showClose}}"><form class="card cb fx-form" sc-camel-on-submit="{{saveClose}}"><h2 class="h2">Fecha afectada por la escuela</h2><div class="fg3"><label class="fld">Fecha<input class="inp" type="date" name="closedDate" required value="{{start}}"></label><label class="fld">Bloque<select class="inp" name="closedBlock" sc-options="{{blocks}}"></select></label><label class="fld">Motivo<input class="inp" name="closedReason" required placeholder="Evento, profesor sin reemplazo…"></label></div><p class="s m">Conserva el registro y genera recuperación para inscritos. Las recuperaciones reservadas vuelven a estar disponibles. Reto 21 queda sin crédito automático.</p><button class="btn" type="submit">Revisar clases afectadas</button><sc-if value="{{closePreview}}"><div class="al"><div><b>{{closePreview}}</b><button type="button" class="btn" sc-camel-on-click="{{confirmClose}}">Confirmar cancelación</button></div></div></sc-if></form></sc-if>
+<sc-if value="{{showEnsemble}}"><form class="card cb fx-form" sc-camel-on-submit="{{saveEnsemble}}"><h2 class="h2">Ensamble · sesión de la semana</h2><p class="s m">Opcional y no recuperable. Recepción selecciona alumnos y verifica su nivel; no se presupone un nivel mínimo.</p><div class="fg3"><label class="fld">Fecha<input class="inp" name="ensembleDate" type="date" value="{{start}}" required></label><label class="fld">Hora<input class="inp" name="ensembleTime" type="time" required></label><label class="fld">Duración (min)<input class="inp" name="ensembleDuration" type="number" min="15" max="240" required></label><label class="fld">Profesor<select class="inp" name="ensembleTeacher" sc-options="{{ensembleTeachers}}"></select></label><label class="fld">Aula<input class="inp" name="ensembleRoom" required></label><label class="fld">Cupo<input class="inp" name="ensembleCap" type="number" min="1" required></label></div><div class="fx-checks"><sc-for list="{{ensembleStudents}}" as="s"><label class="chk"><input type="checkbox" name="{{s.field}}">{{s.label}}</label></sc-for></div><label class="chk"><input type="checkbox" name="levelChecked" required>Verifiqué que los seleccionados cumplen el nivel requerido</label><button class="btn" type="submit">Guardar ensamble</button></form></sc-if>
+<div class="fx-layout"><div class="fx-scroll"><div class="fx-week"><sc-for list="{{days}}" as="day"><section class="fx-day"><div class="fx-dayhead"><b>{{day.label}}</b><small>{{day.date}}</small></div><sc-if value="{{day.holiday}}"><div class="fx-closed">{{day.holiday}} · feriado</div></sc-if><sc-for list="{{day.blocks}}" as="b"><div class="fx-block" data-drop-b="{{b.id}}" data-drop-date="{{day.date}}"><div class="fx-blockhead"><b>{{b.time}} · {{b.inst}}</b><small>{{b.teacher}} · {{b.room}}</small><small>{{b.occupancy}}</small></div><sc-if value="{{b.closed}}"><span class="bg mu">Cancelada · {{b.closed}}</span></sc-if><sc-for list="{{b.students}}" as="s"><a class="{{s.cls}}" draggable="{{s.draggable}}" data-reservation="{{s.key}}" data-date="{{day.date}}" href="{{s.href}}"><b>{{s.name}}</b><small>{{s.label}}</small></a></sc-for><sc-if value="{{b.empty}}"><span class="xs m">Cupo disponible</span></sc-if></div></sc-for><sc-for list="{{day.ensembles}}" as="e"><div class="fx-ensemble"><b>{{e.time}} · Ensamble</b><small>{{e.names}}</small><small>Opcional · sin recuperación</small></div></sc-for></section></sc-for></div></div>
+<aside class="fx-pending card"><div class="ch"><div><h2 class="h2">Pendientes de la semana</h2><p>Por alumno e instrumento</p></div><span class="bg or">{{pendingCount}}</span></div><div class="cb"><input class="inp" placeholder="Buscar alumno…" aria-label="Buscar pendientes" value="{{searchValue}}" sc-camel-on-input="{{search}}"></div><sc-for list="{{pending}}" as="p"><a class="row" href="{{p.href}}"><div class="grow"><b>{{p.name}}</b><p>{{p.inst}} · {{p.count}}</p><span class="{{p.cls}}">{{p.reason}}</span></div></a></sc-for><sc-if value="{{noPending}}"><div class="cb s m">Sin pendientes para esta selección.</div></sc-if><div class="cb xs m">Las propuestas reservan cupo, pero no equivalen a asistencia confirmada. Las recuperaciones se cuentan aparte.</div></aside></div>
+<p class="xs m">Arrastra una reserva a otro bloque o tócala para cambiarla. El cambio se valida antes de guardar. El historial se conserva.</p>`, 'Calendario semanal');
+  App.register('DirSemana',class extends DCLogic{renderVals(){
+    const S=PL.S,st=this.state,start=week(st.date||this.P.d||D.TODAY),site=S.session.site||'au',teacher=st.teacher||'';
+    const pending=[];const days=Array.from({length:7},(_,i)=>{const d=D.add(start,i),h=Q.holiday(d);return {date:d,label:D.short(d).split(' ').slice(0,2).join(' '),holiday:h?.n,blocks:h?[]:S.blocks.filter(b=>b.site===site&&b.days.includes(D.dow(d))&&(!teacher||b.t===teacher)).sort((a,b)=>a.time.localeCompare(b.time)).map(b=>{
+      const cl=closed(b.id,d);const students=roster(b.id,d).map(r=>{const s=Q.student(r.sid);return {key:r.key,name:Q.name(s),label:(s.program==='Reto 21'?'Reto 21 · gratis':r.status==='proposed'?'Por confirmar':'Clase regular'),cls:'fx-student'+(s.program==='Reto 21'?' trial':r.status==='proposed'?' proposed':''),draggable:cl?'false':'true',href:'#/DirProgramar?s='+s.id+'&c='+r.cid+'&date='+d+'&key='+encodeURIComponent(r.key)};});
+      Q.recupsIn(b.id,d).forEach(c=>students.push({name:Q.name(Q.student(c.st)),label:'Recuperación',cls:'fx-student recovery',draggable:'false',href:'#/DirRecuperaciones?id='+c.st}));
+      return {id:b.id,time:b.time,inst:b.inst,teacher:Q.teacher(b.t).n,room:b.aula,occupancy:cl?'Sin clases':students.length+'/'+b.cap+' cupos',closed:cl?.reason,students,empty:!students.length&&!cl};}),ensembles:S.ensembles.filter(x=>x.date===d&&x.site===site&&(!teacher||x.t===teacher)).map(x=>({...x,names:x.students.map(id=>Q.name(Q.student(id))).join(', ')}))};});
+    Q.siteStudents(site).filter(Q.isActive).forEach(s=>Q.activeCourses(s).forEach(c=>{
+      if(teacher&&!S.blocks.some(b=>b.t===teacher&&b.inst===c.inst&&b.site===site))return;
+      const rr=[];for(let i=0;i<7;i++)rr.push(...slots(s,c,D.add(start,i)).filter(r=>!closed(r.b,r.date)&&!Q.holiday(r.date)));
+      const proposed=rr.filter(r=>r.status==='proposed').length,count=rr.filter(r=>r.status==='confirmed').length;
+      const credits=Q.avail(s,c.inst).length;const isTrial=!regular(s);
+      if((!isTrial&&count<2)||proposed||credits||(isTrial&&!rr.length))pending.push({name:Q.name(s),inst:c.inst,count:isTrial?count+' prueba(s)':count+'/2 confirmadas',reason:proposed?proposed+' por confirmar':credits?credits+' por recuperar':isTrial?'Reto 21 · sin reserva':count?'Semana incompleta':'Sin horario',cls:credits?'bg or':'bg wr',href:credits&&!proposed&&count>=2?'#/DirAgendarRecup?id='+s.id:'#/DirProgramar?s='+s.id+'&c='+c.id+'&date='+start});
+    }));
+    const filtered=pending.filter(p=>!st.search||(p.name+' '+p.inst).toLowerCase().includes(st.search.toLowerCase()));
+    return {start,month:start.slice(0,7),label:D.short(start)+' – '+D.short(D.add(start,6)),days,pending:filtered,pendingCount:pending.length,noPending:!filtered.length,teacher,teachers:[{v:'',l:'Todos los profesores'},...S.teachers.filter(t=>t.sites.includes(site)).map(t=>({v:t.id,l:t.n}))],ensembleTeachers:S.teachers.filter(t=>t.sites.includes(site)).map(t=>({v:t.id,l:t.n})),pickTeacher:e=>this.setState({teacher:e.target.value}),prev:()=>this.setState({date:D.add(start,-7)}),next:()=>this.setState({date:D.add(start,7)}),today:()=>this.setState({date:D.TODAY}),searchValue:st.search||'',search:e=>this.setState({search:e.target.value}),showClose:st.showClose,showEnsemble:st.showEnsemble,toggleClose:()=>this.setState({showClose:!st.showClose,showEnsemble:false}),toggleEnsemble:()=>this.setState({showEnsemble:!st.showEnsemble,showClose:false}),blocks:[{v:'all',l:'Todos los bloques de esta sede'},...S.blocks.filter(b=>b.site===site).map(b=>({v:b.id,l:b.inst+' · '+Q.sched(b)}))],closePreview:st.closePreview,
+      saveClose:e=>{e.preventDefault();const d=this.f('closedDate'),bid=this.f('closedBlock'),reason=this.f('closedReason').trim();if(d<D.TODAY||!reason)return A.toast('Elige una fecha actual o futura y escribe el motivo.');const bs=S.blocks.filter(b=>b.site===site&&b.days.includes(D.dow(d))&&(bid==='all'||b.id===bid)&&!closed(b.id,d));st.closeData={d,bs,reason};this.setState({closePreview:bs.length+' bloques y '+bs.reduce((n,b)=>n+roster(b.id,d).length+Q.recupsIn(b.id,d).length,0)+' reservas afectadas.'});},
+      confirmClose:()=>{const x=st.closeData;if(!x)return;if(x.d!==this.f('closedDate')||x.reason!==this.f('closedReason').trim()||(this.f('closedBlock')!=='all'&&x.bs.some(b=>b.id!==this.f('closedBlock'))))return A.toast('Cambió la selección. Revisa las clases afectadas otra vez.');let n=0;x.bs.forEach(b=>n+=cancelBlock(b.id,x.d,x.reason));st.closePreview='';st.showClose=false;A.commit();A.toast('Cancelación registrada · '+n+' créditos. Avisos externos no enviados en la demo.');},
+      ensembleStudents:Q.siteStudents(site).filter(s=>Q.isActive(s)&&regular(s)).map(s=>({field:'ensemble_'+s.id,label:Q.name(s)+' · '+Q.activeCourses(s).map(c=>c.inst+' '+c.level).join(', ')})),
+      saveEnsemble:e=>{e.preventDefault();const x={id:uid('ens'),site,date:this.f('ensembleDate'),time:this.f('ensembleTime'),duration:+this.f('ensembleDuration'),t:this.f('ensembleTeacher'),aula:this.f('ensembleRoom').trim(),cap:+this.f('ensembleCap'),students:Q.siteStudents(site).filter(s=>this.f('ensemble_'+s.id)).map(s=>s.id)};if(x.date<D.TODAY||!x.students.length||x.students.length>x.cap||!this.f('levelChecked')||Q.holiday(x.date))return A.toast('Revisa fecha, cupo, alumnos y validación de nivel.');if(S.ensembles.some(y=>y.site===site&&week(y.date)===week(x.date)&&y.students.some(id=>x.students.includes(id))))return A.toast('Uno de los alumnos ya tiene ensamble esta semana.');if(reservations(x.date).some(r=>overlap(Q.block(r.b),x)&&(x.students.includes(r.sid)||Q.block(r.b).t===x.t||(Q.block(r.b).site===site&&Q.block(r.b).aula===x.aula)))||S.ensembles.some(y=>y.date===x.date&&overlap(y,x)&&(y.t===x.t||(y.site===site&&y.aula===x.aula))))return A.toast('Cruce de alumno, profesor o aula. Elige otro horario.');S.ensembles.push(x);st.showEnsemble=false;A.commit();A.toast('Ensamble guardado · opcional y no recuperable.');}
+    };
+  }});
+  template('DirProgramar',`
+<div class="head"><div><h1 class="h1">Horario del alumno</h1><p class="sub">Programa una clase o acuerda sus dos horarios habituales.</p></div><a class="btn sec" href="#/DirSemana?d={{date}}">Volver a la semana</a></div>
+<div class="g21"><div class="card cb fx-form"><label class="fld">Alumno<select class="inp" aria-label="Alumno" sc-options="{{students}}" value="{{sid}}" sc-camel-on-change="{{pickStudent}}"></select></label><label class="fld">Instrumento<select class="inp" aria-label="Instrumento" sc-options="{{courses}}" value="{{cid}}" sc-camel-on-change="{{pickCourse}}"></select></label><div class="al in"><div><b>{{description}}</b><p>{{current}}</p></div></div>
+<div class="chips"><button class="{{oneCls}}" sc-camel-on-click="{{one}}">Solo esta clase</button><button class="{{baseCls}}" sc-camel-on-click="{{base}}">Horario habitual / variable</button></div>
+<sc-if value="{{isOne}}"><label class="fld">Fecha<input class="inp" type="date" name="bookingDate" value="{{date}}" sc-camel-on-change="{{pickDate}}"></label><label class="fld">Bloque disponible<select class="inp" name="bookingBlock" sc-options="{{blocks}}" value="{{bid}}"></select></label><label class="fld">Estado<select class="inp" name="bookingStatus"><option value="confirmed">Confirmado con el alumno</option><option value="proposed">Propuesto · falta confirmar</option></select></label><p class="s m">{{sourceText}}</p><button class="btn" sc-camel-on-click="{{saveOne}}">Validar y guardar clase</button><sc-if value="{{canConfirm}}"><button class="btn sec" sc-camel-on-click="{{confirmProposal}}">Confirmar propuesta existente</button></sc-if></sc-if>
+<sc-if value="{{isBase}}"><label class="fld">Modalidad<select class="inp" aria-label="Modalidad" value="{{mode}}" sc-camel-on-change="{{pickMode}}"><option value="habitual">Dos horarios habituales, modificables</option><option value="variable">Variable · coordinar cada semana</option></select></label><label class="fld">Desde<input class="inp" name="patternFrom" type="date" value="{{date}}"></label><sc-if value="{{habitual}}"><label class="fld">Primera clase semanal<select class="inp" name="patternOne" sc-options="{{patterns}}" value="{{p1}}"></select></label><label class="fld">Segunda clase semanal<select class="inp" name="patternTwo" sc-options="{{patterns}}" value="{{p2}}"></select></label></sc-if><p class="s m">Se conserva el historial. Las reservas puntuales ya creadas se mantienen; revisa los pendientes de cada semana.</p><button class="btn" sc-camel-on-click="{{saveBase}}">Guardar modalidad y horarios</button></sc-if>
+<sc-if value="{{error}}"><div class="al" role="alert">{{error}}</div></sc-if></div><div class="card cb fx-form"><h2 class="h2">Recuperaciones aparte</h2><p>{{credits}} créditos disponibles de este instrumento.</p><a class="btn sec" href="#/DirAgendarRecup?id={{sid}}">Agendar con un crédito</a><p class="s m">Mover una clase conserva esa clase. No genera un crédito adicional. Las propuestas pendientes no se confirman automáticamente.</p><a class="lnk" href="#/DirFicha?id={{sid}}">Ver ficha del alumno →</a></div></div>`, 'Programar alumno');
+  const patternOptions=(s,c)=>PL.S.blocks.filter(b=>b.site===s.site&&b.inst===c.inst).flatMap(b=>b.days.map(day=>({v:b.id+'|'+day,l:D.DL[day]+' '+b.time+' · '+Q.teacher(b.t).n+' · '+b.aula})));
+  App.register('DirProgramar',class extends DCLogic{renderVals(){
+    const S=PL.S,st=this.state,ss=Q.siteStudents(S.session.site||'au').filter(Q.isActive),s=Q.student(st.sid||this.P.s)||ss[0];if(!s)return {error:'Primero registra un alumno.'};
+    const cs=Q.activeCourses(s),c=cs.find(c=>c.id===(st.cid||this.P.c))||cs[0];if(!c)return {error:'El alumno no tiene cursos activos.'};
+    const date=st.date||this.P.date||D.TODAY,v=version(c,date),mode=st.mode||v.mode,kind=st.kind||'one';
+    const source=this.P.key?reservations(this.P.date||date).find(r=>r.key===this.P.key):null;
+    const patterns=patternOptions(s,c),ps=v.slots.map(x=>x.b+'|'+x.day);
+    return {sid:s.id,cid:c.id,date,bid:st.bid||this.P.b||source?.b||'',students:ss.map(s=>({v:s.id,l:Q.name(s)+(regular(s)?'':' · Reto 21')})),courses:cs.map(c=>({v:c.id,l:c.inst})),pickStudent:e=>{this.P.key='';this.setState({sid:e.target.value,cid:null,mode:null,error:''});},pickCourse:e=>{this.P.key='';this.setState({cid:e.target.value,mode:null,error:''});},description:regular(s)?'2 clases semanales de '+c.inst:'Reto 21 · prueba gratuita',current:v.mode==='variable'?'Modalidad variable · no tiene reservas recurrentes':v.slots.map(x=>D.DL[x.day]+' '+Q.block(x.b).time).join(' · '),oneCls:kind==='one'?'chip on':'chip',baseCls:kind==='base'?'chip on':'chip',one:()=>this.setState({kind:'one',error:''}),base:()=>this.setState({kind:'base',error:''}),isOne:kind==='one',isBase:kind==='base',mode,habitual:mode==='habitual',pickMode:e=>this.setState({mode:e.target.value}),patterns,p1:ps[0]||patterns[0]?.v,p2:ps[1]||patterns[1]?.v,credits:Q.avail(s,c.inst).length,error:st.error||'',sourceText:source?'Estás cambiando una reserva existente. La original se libera al guardar.':'Reserva puntual: no modifica las demás semanas.',canConfirm:source?.status==='proposed',pickDate:e=>this.setState({date:e.target.value}),blocks:[{v:'',l:'Selecciona un bloque'},...S.blocks.filter(b=>b.site===s.site&&b.inst===c.inst&&b.days.includes(D.dow(date))).map(b=>({v:b.id,l:b.time+' · '+Q.teacher(b.t).n+' · '+Q.occ(b.id,date)+'/'+b.cap+' cupos'+(closed(b.id,date)?' · cerrado':''),dis:!!closed(b.id,date)}))],
+      saveOne:()=>{const err=book(s.id,c.id,this.f('bookingBlock'),this.f('bookingDate'),this.f('bookingStatus'),source);if(err)return this.setState({error:err});PL.save();A.toast('Clase guardada.');App.go('DirSemana?d='+this.f('bookingDate'));},
+      confirmProposal:()=>{if(!source||source.status!=='proposed')return;const err=check(s,c,source.b,source.date,source.key);if(err)return this.setState({error:err});source.status='confirmed';A.log(s.id,'Propuesta confirmada · '+source.date);PL.save();App.go('DirSemana?d='+source.date);},
+      saveBase:()=>{if(!regular(s)&&mode==='habitual')return this.setState({error:'Reto 21 se agenda como prueba puntual; no tiene un plan regular definido.'});const values=mode==='habitual'?[this.f('patternOne'),this.f('patternTwo')].map(v=>{const [b,day]=v.split('|');return {b,day:+day};}):[];const from=this.f('patternFrom'),err=setPattern(s.id,c.id,mode,values,from);if(err)return this.setState({error:err});PL.save();A.toast('Horario guardado.');App.go('DirSemana?d='+from);}
+    };
+  }});
+  // Arrastrar abre una revisión, nunca confirma ni cambia una serie silenciosamente.
+  document.addEventListener('dragstart',e=>{const el=e.target.closest('[data-reservation]');if(el&&el.getAttribute('draggable')==='true'){e.dataTransfer.setData('text/plain',JSON.stringify({key:el.dataset.reservation,date:el.dataset.date}));}});
+  document.addEventListener('dragover',e=>{if(e.target.closest('[data-drop-b]'))e.preventDefault();});
+  document.addEventListener('drop',e=>{const el=e.target.closest('[data-drop-b]');if(!el)return;e.preventDefault();try{const source=JSON.parse(e.dataTransfer.getData('text/plain'));const r=reservations(source.date).find(r=>r.key===source.key);if(!r)return;App.go('DirProgramar?s='+r.sid+'&c='+r.cid+'&key='+encodeURIComponent(r.key)+'&date='+source.date+'&b='+el.dataset.dropB+'&target='+el.dataset.dropDate);}catch{}});
+  const prog=App.screens.DirProgramar.cls.prototype.renderVals;App.screens.DirProgramar.cls.prototype.renderVals=function(){if(this.P.target&&!this.state.date)this.state.date=this.P.target;return prog.call(this);};
+  // Alta: contacto propio para adultos, referencia opcional y referido identificado.
+  const newT=document.getElementById('tpl-DirNuevoAlumno');
+  let nh=newT.innerHTML;
+  nh=nh.replace('value="2017-01-15"','required value="{{birthValue}}" sc-camel-on-change="{{pickBirth}}"');
+  nh=nh.replace('2 · Representante','2 · {{contactTitle}}').replace('<i>2</i>Representante','<i>2</i>Contacto');
+  nh=nh.replace('name="rep" required=""','name="rep" required="{{minor}}"').replace('Nombre del padre, madre o tutor','Representante del menor o referencia opcional');
+  nh=nh.replace('<option>Tutor legal</option>','<option>Tutor legal</option><option>Referencia</option>');
+  nh=nh.replace('Consentimiento de tratamiento de datos del menor firmado (LOPDP)','Consentimiento de tratamiento de datos registrado');
+  nh=nh.replace('<label class="fld">¿Cómo nos conoció?',`<label class="fld">Tipo de registro<select class="inp" name="program" value="{{program}}" sc-camel-on-change="{{pickProgram}}"><option>Inscrito</option><option>Reto 21</option></select></label><label class="fld">Referido por (opcional)<input class="inp" name="referredBy" placeholder="Nombre de quien lo recomendó"></label><label class="fld">Teléfono del alumno (opcional)<input class="inp" name="ownTel" type="tel"></label><label class="fld">Correo del alumno (opcional)<input class="inp" name="ownMail" type="email"></label><label class="fld">¿Cómo nos conoció?`);
+  nh=nh.replace('<label class="fld">Horario (bloque)<select class="inp" sc-options="{{c.bOpts}}" value="{{c.b}}" sc-camel-on-change="{{c.setB}}"></select></label>',`<label class="fld">Modalidad<select class="inp" value="{{c.mode}}" sc-camel-on-change="{{c.setMode}}"><option value="habitual">Horario habitual</option><option value="variable">Variable · programar después</option></select></label><sc-if value="{{c.habitual}}"><label class="fld">Primera clase<select class="inp" value="{{c.p1}}" sc-options="{{c.patterns}}" sc-camel-on-change="{{c.setP1}}"></select></label><label class="fld">Segunda clase<select class="inp" value="{{c.p2}}" sc-options="{{c.patterns}}" sc-camel-on-change="{{c.setP2}}"></select></label></sc-if>`);
+  nh=nh.replace('<dt>Estado inicial</dt><dd>Activo</dd>','<dt>Registro</dt><dd>{{program}}</dd>').replace('Todos los horarios elegidos tienen cupo disponible.','Se validan cupos al guardar.');
+  nh=nh.replace('<label class="fld">Forma de pago<select class="inp" name="pay{{c.n}}">','<sc-if value="{{!c.isTrial}}"><label class="fld">Forma de pago<select class="inp" name="pay{{c.n}}">');
+  nh=nh.replace('<option>Canje</option><option>Promoción</option></select></label>','<option>Canje</option><option>Promoción</option></select></label></sc-if><sc-if value="{{c.isTrial}}"><div class="al in">Reto 21 · prueba gratuita · sin pago ni matrícula</div></sc-if>');
+  nh=nh.replace('<label class="chk"><input type="checkbox" name="app" checked="">Invitar al representante a la web app de padres</label>','<sc-if value="{{minor}}"><label class="chk"><input type="checkbox" name="app" checked="">Invitar al representante a la web app de padres</label></sc-if>');
+  newT.innerHTML=nh;
+  const newBase=App.screens.DirNuevoAlumno.cls.prototype.renderVals;
+  App.screens.DirNuevoAlumno.cls.prototype.renderVals=function(){const v=newBase.call(this),st=this.state;st.birthValue ||= '';st.program ||= 'Inscrito';const minor=!st.birthValue||D.age(st.birthValue)<18;
+    Object.assign(v,{birthValue:st.birthValue,minor,contactTitle:minor?'Representante del menor':'Referencia opcional · alumno adulto',pickBirth:e=>this.setState({birthValue:e.target.value}),program:st.program,pickProgram:e=>{st.cs.forEach(c=>c.mode='variable');this.setState({program:e.target.value});},cupoT:'Se validan los horarios habituales al guardar. Los variables aparecen en pendientes.',cupoC:'al in'});
+    v.add=()=>{const inst=[...new Set(PL.S.blocks.filter(b=>b.site===(st.site||PL.S.session.site||'au')).map(b=>b.inst))].find(inst=>!st.cs.some(c=>c.inst===inst));if(!inst)return A.toast('Ya agregaste todos los instrumentos disponibles.');st.cs.push({inst});this.setState({});};
+    v.courses=v.courses.map((r,i)=>{const c=st.cs[i],opts=patternOptions({site:st.site||PL.S.session.site||'au'},c);c.mode ||= st.program==='Reto 21'?'variable':'habitual';c.p1=opts.some(o=>o.v===c.p1)?c.p1:opts[0]?.v;c.p2=opts.some(o=>o.v===c.p2)?c.p2:opts[1]?.v;return {...r,isTrial:st.program==='Reto 21',mode:c.mode,habitual:c.mode==='habitual',p1:c.p1,p2:c.p2,patterns:opts,setMode:e=>{c.mode=e.target.value;this.setState({});},setP1:e=>{c.p1=e.target.value;this.setState({});},setP2:e=>{c.p2=e.target.value;this.setState({});}};});
+    v.save=e=>{e.preventDefault();const first=this.f('first').trim(),last=this.f('last').trim(),birth=this.f('birth'),start=this.f('start'),site=st.site||PL.S.session.site||'au';if(!first||!last||!birth||birth>D.TODAY||!start)return A.toast('Completa nombre, apellido, nacimiento válido e inicio.');if(minor&&!this.f('rep').trim())return A.toast('Registra el representante del menor.');if(!this.f('lopdp'))return A.toast('Registra el consentimiento de datos.');if(new Set(st.cs.map(c=>c.inst)).size!==st.cs.length)return A.toast('Cada instrumento debe registrarse una sola vez.');if(st.program==='Reto 21'&&st.cs.some(c=>c.mode!=='variable'))return A.toast('Las pruebas Reto 21 se programan como reservas puntuales.');
+      const s=A.addStudent({first,last,birth,site,start,how:this.f('how'),rep:this.f('rep').trim(),parent:minor?this.f('parent'):'Referencia',tel:this.f('tel'),mail:this.f('mail'),ced:this.f('ced'),fam:minor&&st.rep&&this.f('rep')===st.rep.n?st.familyId:null,app:minor&&this.f('app'),courses:st.cs.map((c,i)=>({inst:c.inst,b:c.mode==='habitual'&&c.p1?c.p1.split('|')[0]:c.b,level:this.f('lvl'+(i+1)),pay:st.program==='Reto 21'?'Sin pago':this.f('pay'+(i+1)),type:st.program==='Reto 21'?'Reto 21':this.f('type'+(i+1))}))});
+      s.program=st.program;s.referredBy=this.f('referredBy').trim();s.contact={tel:this.f('ownTel'),mail:this.f('ownMail')};if(!this.f('rep').trim())s.rep.n='';
+      s.courses.forEach(c=>c.flexVersions=[{from:start,mode:'variable',slots:[]}]);
+      for(let i=0;i<s.courses.length;i++){const c=st.cs[i],patterns=c.mode==='habitual'?[c.p1,c.p2].filter(Boolean).map(x=>{const [b,day]=x.split('|');return {b,day:+day};}):[];const err=setPattern(s.id,s.courses[i].id,c.mode,patterns,start);if(err){PL.S.students=PL.S.students.filter(x=>x.id!==s.id);PL.S.log=PL.S.log.filter(x=>x.sid!==s.id);return A.toast(err);}}
+      if(st.program==='Reto 21')s.contracts[0].label='Prueba gratuita · Reto 21';A.commit();A.toast('Registro guardado.');App.go('DirFicha?id='+s.id);
+    };return v;
+  };
+  const ft=document.getElementById('tpl-DirFicha');let fh=ft.innerHTML;
+  fh=fh.replace('Datos y representante','Datos y contacto').replace('<dt>Representante</dt>','<dt>{{contactTitle}}</dt>').replace('>Representante<input','>{{contactTitle}}<input');
+  fh=fh.replace('<div><dt>Fecha de nacimiento</dt>',`<div><dt>Registro</dt><dd>{{program}}</dd></div><div><dt>Referido por</dt><dd>{{referredBy}}</dd></div><div><dt>Contacto del alumno</dt><dd>{{ownContact}}</dd></div><div><dt>Fecha de nacimiento</dt>`);
+  fh=fh.replace('<label class="fld">Representante', '<label class="fld">Contacto');
+  fh=fh.replace('<label class="fld">Parentesco<input',`<label class="fld">Referido por<input class="inp" name="eref" value="{{referredRaw}}"></label><label class="fld">Teléfono del alumno<input class="inp" name="eownTel" value="{{ownTel}}"></label><label class="fld">Correo del alumno<input class="inp" name="eownMail" value="{{ownMail}}"></label><label class="fld">Parentesco<input`);
+  fh=fh.replace('<b>{{c.i}} · {{c.lvl}}</b>','<b>{{c.i}} · {{c.lvl}}</b><a class="lnk" href="{{c.scheduleLink}}">Configurar horario →</a>');ft.innerHTML=fh;
+  const courseRow=PLU.courseRow;PLU.courseRow=c=>{const r=courseRow(c),vv=version(c,D.TODAY);if(vv.mode==='variable')r.h='Variable · ver agenda semanal';else{r.h=vv.slots.map(x=>D.DL[x.day]+' '+Q.block(x.b).time).join(' · ');r.p=[...new Set(vv.slots.map(x=>Q.teacher(Q.block(x.b).t).n))].join(', ');}return r;};
+  const ficha=App.screens.DirFicha.cls.prototype.renderVals;App.screens.DirFicha.cls.prototype.renderVals=function(){const v=ficha.call(this),s=Q.student(v.s.id);Object.assign(v,{contactTitle:D.age(s.birth)>=18?'Referencia opcional':'Representante',program:s.program||'Inscrito',referredBy:s.referredBy||'Sin referido registrado',referredRaw:s.referredBy||'',ownContact:[s.contact?.tel,s.contact?.mail].filter(Boolean).join(' · ')||'Sin registrar',ownTel:s.contact?.tel||'',ownMail:s.contact?.mail||''});v.courses.forEach((r,i)=>{const c=s.courses[i],vv=version(c,D.TODAY);r.scheduleLink='#/DirProgramar?s='+s.id+'&c='+c.id;r.h=vv.mode==='variable'?'Variable · ver agenda semanal':vv.slots.map(x=>D.DL[x.day]+' '+Q.block(x.b).time).join(' · ');});const save=v.saveEdit;v.saveEdit=()=>{if(D.age(s.birth)<18&&!this.f('erep').trim())return A.toast('El menor necesita representante.');s.referredBy=this.f('eref').trim();s.contact={tel:this.f('eownTel'),mail:this.f('eownMail')};save();};return v;};
+  // Etiqueta de Reto visible, sin confundirla con matrícula ni cobranza.
+  const alumnos=App.screens.DirAlumnos.cls.prototype.renderVals;App.screens.DirAlumnos.cls.prototype.renderVals=function(){const v=alumnos.call(this);v.rows.forEach(r=>{if(!regular(Q.student(r.id))){r.st='Reto 21';r.bc='bg or';}});const ss=Q.siteStudents(PL.S.session.site||'');v.tabs.forEach((t,i)=>t.c=ss.filter(s=>i===0?Q.isActive(s):i===1?s.status.startsWith('Retirado'):i===2?s.status==='Graduado':true).length);const f=v.filters.find(f=>f.l==='Tipo');if(f)f.opts.push({v:'Reto 21',l:'Tipo: Reto 21'});return v;};
+  const pt=document.getElementById('tpl-ProfAsistencia');pt.innerHTML=pt.innerHTML.replace('<small>{{k.sub}}</small>','<small>{{k.sub}}</small><small>{{k.creditText}}</small>');
+  const att=App.screens.ProfAsistencia.cls.prototype.renderVals;App.screens.ProfAsistencia.cls.prototype.renderVals=function(){const v=att.call(this);v.kids.forEach(k=>{const s=Q.student(k.id);k.creditText=regular(s)?'Créditos disponibles: '+Q.avail(s,Q.block(v.bid).inst).length:'Reto 21 · prueba gratuita · sin crédito automático';});return v;};
+  // Historial y portal leen las reservas reales, también cuando cambió el bloque.
+  plNextSessions=function(s,n){const out=[];for(let i=0;i<56&&out.length<(n||5);i++){const d=D.add(D.TODAY,i);if(Q.holiday(d))continue;Q.activeCourses(s).forEach(c=>slots(s,c,d).filter(r=>r.status==='confirmed'&&!closed(r.b,d)).forEach(r=>{const b=Q.block(r.b);if(i===0&&b.time<=D.NOW)return;out.push({d,b,c,rec:false,off:Q.attOf(b.id,d,s.id)?.st==='Falta anticipada'});}));PL.S.credits.filter(c=>c.st===s.id&&c.status==='Agendada'&&c.sch?.date===d).forEach(c=>out.push({d,b:Q.block(c.sch.b),c:{inst:c.inst,level:s.level},rec:true,credit:c}));}return out.sort((a,b)=>(a.d+a.b.time).localeCompare(b.d+b.b.time));};
+  const history=plStudentAttendance;plStudentAttendance=function(s,from,to){const old=history(s,from,to).filter(x=>x.c.includes('recup.'));for(const [k,a]of Object.entries(PL.S.att)){const [bid,d,sid]=k.split('|'),b=Q.block(bid);if(sid===s.id&&b&&d>=from&&d<=to&&!PL.S.credits.some(c=>c.st===sid&&c.sch?.b===bid&&c.sch?.date===d))old.push({date:d,time:b.time,d:D.short(d),c:b.inst,p:Q.teacher(b.t).n,e:a.st,bc:PL_ATT_BC[a.st]||'bg'});}return old.sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));};
+  const css=document.createElement('style');css.textContent=`.fx-layout{display:grid;grid-template-columns:minmax(0,1fr) 265px;gap:18px;align-items:start}.fx-scroll{overflow-x:auto;border:1px solid #dce9e8;border-radius:16px;background:white}.fx-scroll{max-height:780px}.fx-pending{max-height:780px;overflow-y:auto}.fx-week{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));min-width:1080px}.fx-day{border-right:1px solid #e3eded;min-height:420px;padding:0 8px 12px}.fx-dayhead{display:flex;flex-direction:column;gap:4px;padding:15px 5px;border-bottom:1px solid #e3eded;margin-bottom:12px}.fx-dayhead small,.fx-block small,.fx-ensemble small{display:block;font-size:11px;line-height:1.5;color:#54716f}.fx-block{border:1px solid #dce9e8;border-radius:10px;padding:9px;margin:0 0 12px;background:#fcfefe;min-height:85px}.fx-blockhead{font-size:12px;line-height:1.5;margin-bottom:7px}.fx-student{display:block;padding:8px;border-radius:7px;background:#e4f4f0;margin-top:5px;text-decoration:none;color:#164b43;font-size:12px;cursor:grab}.fx-student.proposed{background:#fff3d9}.fx-student.trial{background:#f0eafa}.fx-student.recovery{background:#fff0e7}.fx-closed{padding:10px;background:#eef0f2;border-radius:8px;font-size:12px}.fx-pending{position:sticky;top:16px}.fx-pending .row{text-decoration:none;color:inherit;padding:12px 16px}.fx-pending .row:hover{background:#f1f9f7}.fx-form{display:flex;flex-direction:column;gap:16px;margin-bottom:20px}.fx-ensemble{border:1px solid #ab9bce;background:#f5f0ff;border-radius:10px;padding:10px;font-size:12px}.fx-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-height:220px;overflow:auto;gap:10px}.fx-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:12px}.fx-stats .v{font-size:27px}.fx-stats .d{font-size:11px}@media(max-width:1100px){.fx-layout{grid-template-columns:1fr}.fx-pending{position:static}.fx-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.fx-stats,.fx-checks{grid-template-columns:1fr}.fx-form .fg3{grid-template-columns:1fr}}`;
+  document.head.appendChild(css);
+})();
+
+
+/* Correcciones de recepción y vistas, en el mismo prototipo. */
+(function(){
+ const {Q,A,D}=PL;
+ function pending(date,site,teacher){
+  const start=FX.week(date),out=[];
+  Q.siteStudents(site).filter(Q.isActive).forEach(s=>Q.activeCourses(s).forEach(c=>{
+   const all=[];for(let i=0;i<7;i++){const d=D.add(start,i);if(!Q.holiday(d))all.push(...FX.slots(s,c,d).filter(r=>!FX.closed(r.b,d)));}
+   if(teacher&&!all.some(r=>Q.block(r.b).t===teacher)&&Q.block(c.b)?.t!==teacher)return;
+   const proposals=all.filter(r=>r.status==='proposed'),confirmed=all.filter(r=>r.status==='confirmed').length,trial=s.program==='Reto 21';
+   if(!proposals.length&&(trial?all.length>0:confirmed>=2))return;
+   const source=proposals[0];
+   const href='#/DirProgramar?s='+s.id+'&c='+c.id+'&date='+(source?source.date:(date<D.TODAY?D.TODAY:date))+(source?'&key='+encodeURIComponent(source.key):'');
+   out.push({name:Q.name(s),inst:c.inst,count:trial?confirmed+' pruebas confirmadas':confirmed+'/2 confirmadas',reason:proposals.length?proposals.length+' por confirmar':trial?'Reto 21 · sin horario':confirmed?'Falta asignar una clase':'Sin horario asignado',cls:trial?'bg or':'bg wr',href,action:source?'Cambiar horario':'Asignar horario',canConfirm:!!source,
+    confirm:()=>{const error=FX.check(s,c,source.b,source.date,source.key);if(error)return A.toast(error);source.status='confirmed';A.log(s.id,'Recepción / dirección confirmó '+c.inst+' · '+source.date);A.commit();A.toast('Horario confirmado y colocado en el calendario.');}});
+  }));return out;
+ }
+ function examples(site){return Q.siteStudents(site).filter(s=>s.program==='Reto 21').map(s=>({name:Q.name(s),href:'#/DirFicha?id='+s.id}));}
+ const rows=`<sc-for list="{{pending}}" as="p"><div class="row" style="flex-wrap:wrap"><div class="grow"><b>{{p.name}}</b><p>{{p.inst}} · {{p.count}}</p><span class="{{p.cls}}">{{p.reason}}</span></div><div class="acts"><a class="btn sec sm" href="{{p.href}}">{{p.action}}</a><sc-if value="{{p.canConfirm}}"><button class="btn sm" sc-camel-on-click="{{p.confirm}}">Confirmar horario</button></sc-if></div></div></sc-for>`;
+ const example=`<div class="al in"><div><b>Estudiante de ejemplo · Reto 21</b><sc-for list="{{retoExamples}}" as="r"><p><a class="lnk" href="{{r.href}}">{{r.name}}</a> · Reto 21 · prueba gratuita</p></sc-for></div></div>`;
+ const panel=`<section class="card fx-manage"><div class="ch"><div><h2 class="h2">Horarios por asignar o confirmar</h2><p>Recepción asigna y confirma directamente. Semana seleccionada.</p></div><span class="bg or">{{pendingCount}}</span></div>${rows}<sc-if value="{{noPending}}"><div class="cb s m">No hay horarios pendientes en esta semana.</div></sc-if></section>`;
+ // Reception's home is an operational scheduling queue, not a reminder button.
+ const rec=document.getElementById('tpl-RecHoy');
+ let html=rec.innerHTML;
+ html=html.replace('<h2 class="h2">Asistencias pendientes</h2><p>Recuérdale al profesor antes de que se vaya</p>','<h2 class="h2">Horarios por asignar o confirmar</h2><p>Asigna el horario o confirma la reserva desde aquí.</p>');
+ const begin=html.indexOf('<sc-for list="{{pend}}" as="p">'),end=html.indexOf('</sc-for>',begin)+9;
+ if(begin>=0)html=html.slice(0,begin)+rows+html.slice(end);
+ html=html.replace('{{noPend}}','{{noPending}}').replace('Todas las clases de hoy que ya terminaron están registradas.','No hay horarios pendientes esta semana.');
+ html=html.replace('<div class="l">Asistencias sin registrar</div><div class="v">{{k.pend}}</div><div class="d">Clases que ya terminaron</div>','<div class="l">Horarios pendientes</div><div class="v">{{pendingCount}}</div><div class="d">Recepción asigna y confirma</div>');
+ html=html.replace('<div class="stats">',example+'<div class="stats">');
+ html=html.replace('Registrar falta avisada','Registrar ausencia anticipada');
+ html=html.replace('<div class="acts"><button class="btn sec"', '<div class="acts"><a class="btn" href="#/DirSemana">Abrir calendario</a><button class="btn sec"');
+ rec.innerHTML=html;
+ const recVals=App.screens.RecHoy.cls.prototype.renderVals;App.screens.RecHoy.cls.prototype.renderVals=function(){const v=recVals.call(this),ps=pending(D.TODAY,'au');return {...v,pending:ps,pendingCount:ps.length,noPending:!ps.length,retoExamples:examples('au')};};
+ // Both roles receive the same three view selectors and assignment actions.
+ ['DirCalendario','DirCalendarioDia'].forEach(name=>{
+  const t=document.getElementById('tpl-'+name),main=t.content.querySelector('main'),date=name==='DirCalendario'?'{{dayLink}}':'{{date}}';
+  const top=main.querySelector('.head .acts');const a=document.createElement('a');a.className='btn';a.href='#/DirProgramar?date='+date;a.textContent='+ Asignar alumno';top.prepend(a);
+  const div=document.createElement('div');div.innerHTML=panel;main.appendChild(div);
+  const base=App.screens[name].cls.prototype.renderVals;
+  App.screens[name].cls.prototype.renderVals=function(){const v=base.call(this),ps=pending(v.date||v.dayLink,PL.S.session.site||'au',v.tSel);return {...v,pending:ps,pendingCount:ps.length,noPending:!ps.length};};
+ });
+ // Assign into the actual selected day/block, not only a recovery.
+ const day=document.getElementById('tpl-DirCalendarioDia');day.innerHTML=day.innerHTML.replace('<sc-if value="{{sel.canBook}}">','<sc-if value="{{sel.canBook}}"><a class="btn sm" href="#/DirProgramar?date={{date}}&amp;b={{sel.b}}">Asignar alumno aquí</a>');
+ const wt=document.getElementById('tpl-DirSemana');
+ let wh=wt.innerHTML;const rb=wh.indexOf('<sc-for list="{{pending}}" as="p">'),re=wh.indexOf('</sc-for>',rb)+9;
+ if(rb>=0)wh=wh.slice(0,rb)+rows+wh.slice(re);
+ wh=wh.replace('Pendientes de la semana','Horarios pendientes').replace('Por alumno e instrumento','Recepción asigna y confirma').replace('Las propuestas reservan cupo, pero no equivalen a asistencia confirmada. Las recuperaciones se cuentan aparte.','Usa Asignar horario para colocar al alumno y Confirmar horario para aceptar una propuesta.');
+ wh=wh.replace('+ Programar alumno','+ Asignar alumno');
+ wh=wh.replace('<div class="fx-layout">',example+'<div class="fx-layout">');
+ wh=wh.replace('<sc-if value="{{b.empty}}"><span class="xs m">Cupo disponible</span></sc-if>','<sc-if value="{{!b.closed}}"><a class="btn gh sm" href="#/DirProgramar?date={{day.date}}&amp;b={{b.id}}">+ Asignar alumno</a></sc-if>');
+ wt.innerHTML=wh;
+ const wvals=App.screens.DirSemana.cls.prototype.renderVals;App.screens.DirSemana.cls.prototype.renderVals=function(){const v=wvals.call(this),ps=pending(v.start,PL.S.session.site||'au',v.teacher),q=(this.state.search||'').toLowerCase(),filtered=ps.filter(x=>(x.name+' '+x.inst).toLowerCase().includes(q));return {...v,pending:filtered,pendingCount:ps.length,noPending:!filtered.length,retoExamples:examples(PL.S.session.site||'au')};};
+ // The selected calendar block determines the instrument when there is no selected student yet.
+ const program=App.screens.DirProgramar.cls.prototype.renderVals;App.screens.DirProgramar.cls.prototype.renderVals=function(){const block=Q.block(this.P.b);if(block&&!this.P.s&&!this.state.sid){const s=Q.siteStudents(block.site).find(s=>Q.isActive(s)&&Q.activeCourses(s).some(c=>c.inst===block.inst));if(s){this.state.sid=s.id;this.state.cid=Q.activeCourses(s).find(c=>c.inst===block.inst).id;}}return program.call(this);};
+ const form=document.getElementById('tpl-DirProgramar');form.innerHTML=form.innerHTML.replace('Validar y guardar clase','Asignar y guardar en calendario').replace('Confirmado con el alumno','Confirmado por recepción / dirección').replace('Confirmar propuesta existente','Confirmar horario');
+ // Reto example is visible without paging through the student list.
+ const at=document.getElementById('tpl-DirAlumnos');const box=document.createElement('div');box.innerHTML=example;at.content.querySelector('main').insertBefore(box,at.content.querySelector('.head').nextSibling);
+ const av=App.screens.DirAlumnos.cls.prototype.renderVals;App.screens.DirAlumnos.cls.prototype.renderVals=function(){return {...av.call(this),retoExamples:examples(PL.S.session.site||'')};};
+ function seedCorrection(){if(PL.S.calendarCorrectionV2)return;const s=PL.S.students.find(s=>s.program==='Reto 21'&&s.last==='Demo Reto');if(s){const c=s.courses[0];for(const [date,status]of [['2026-10-01','proposed'],['2026-10-06','confirmed']]){if(!FX.slots(s,c,date).length)FX.book(s.id,c.id,'b7',date,status);}}PL.S.calendarCorrectionV2=true;PL.save();}
+ seedCorrection();const reset=A.reset;A.reset=()=>{reset();seedCorrection();};
+ const css=document.createElement('style');css.textContent='.fx-pending .row .acts{width:100%;gap:6px}.fx-manage{margin-top:20px}.fx-manage .row{gap:16px}.fx-pending .btn{white-space:normal}.fx-student.trial{border-left:3px solid #9563bc}';document.head.appendChild(css);
+})();
+
+
+/* Selección visual por instrumento y seguimiento de asistencia. */
+(function(){
+ const {Q,A,D}=PL;
+ const lookup=(sid,cid)=>{const s=Q.student(sid);return {s,c:s?.courses.find(c=>c.id===cid)};};
+ function sourceOf(key,date){return key?FX.reservations(date).find(r=>r.key===key):null;}
+ function availability(s,c,bid,date,source,habitual=false){
+  if(!s||!c)return 'Selecciona alumno e instrumento.';
+  if(!Q.isActive(s)||c.status!=='Activo')return 'Curso inactivo.';
+  if(source&&FX.closed(source.b,source.date))return 'Usa el crédito de la clase cancelada.';
+  let err;
+  if(habitual){
+   const removed=PL.S.flexRemoved,bookings=PL.S.flexBookings,keys=FX.slots(s,c,date).map(r=>r.key);
+   PL.S.flexRemoved=[...removed,...keys];PL.S.flexBookings=bookings.filter(r=>!keys.includes(r.key));
+   try{err=FX.check(s,c,bid,date);}finally{PL.S.flexRemoved=removed;PL.S.flexBookings=bookings;}
+  }else err=FX.check(s,c,bid,date,source?.key);
+  if(err)return err;
+  if(!habitual&&s.program!=='Reto 21'){
+   const start=FX.week(date);let n=0;
+   for(let i=0;i<7;i++){const d=D.add(start,i);if(!Q.holiday(d))n+=FX.slots(s,c,d).filter(r=>r.key!==source?.key).length;}
+   if(n>=2)return 'Ya tiene dos clases de este instrumento; usa una recuperación si corresponde.';
+  }return '';
+ }
+ function attendance(s,inst=''){
+  const entries=[];let omitted=0;
+  for(const [key,value]of Object.entries(PL.S.att)){
+   const [bid,date,sid]=key.split('|'),b=Q.block(bid);
+   if(sid!==s.id||!b||(inst&&b.inst!==inst)||date>D.TODAY||(date===D.TODAY&&b.time>D.NOW)||Q.holiday(date)||FX.closed(bid,date))continue;
+   const state=value.st;
+   if(['Presente','Ausente','Falta anticipada','Recuperó'].includes(state)){
+    const rec=PL.S.credits.some(cr=>cr.st===sid&&cr.sch?.b===bid&&cr.sch?.date===date&&cr.status==='Usada');
+    entries.push({date,time:b.time,day:D.short(date),instrument:b.inst,teacher:Q.teacher(b.t).n,state:rec&&state==='Presente'?'Recuperó':state,attended:state==='Presente'||state==='Recuperó',badge:state==='Presente'||state==='Recuperó'?'bg ok':'bg bd'});
+   }else omitted++;
+  }
+  entries.sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));
+  const present=entries.filter(x=>x.attended).length,total=entries.length,pct=total?Math.round(present/total*100):0;
+  const ens=PL.S.ensembles.filter(e=>e.date<=D.TODAY&&!(e.date===D.TODAY&&e.time>D.NOW)&&e.students.includes(s.id));
+  const attendedEns=ens.filter(e=>['Presente','Asistió'].includes(e.attendance?.[s.id]?.st||e.attendance?.[s.id]));
+  return {present,absent:total-present,total,pct,percentText:total?pct+'%':'Sin registros',barWidth:pct+'%',hasData:total>0,rows:entries,empty:!total,activeTime:Q.antig(s),since:D.dmy(Q.startOf(s)),level:inst?s.courses.find(c=>c.inst===inst)?.level:s.level,instrument:inst||'Todos los instrumentos',ensemble:attendedEns.length,ensembleInfo:ens.length?attendedEns.length+' asistencias registradas de '+ens.length+' sesiones convocadas':'Sin asistencias de ensamble registradas',period:total?D.short(entries[entries.length-1].date)+' – '+D.short(entries[0].date):'Sin fechas registradas',omitted};
+ }
+ function summary(site){
+  const people=Q.siteStudents(site).filter(Q.isActive),enrolled=people.filter(s=>s.program!=='Reto 21'),courses=enrolled.flatMap(Q.activeCourses),labels=['Pagante','Becado','Promoción','Canje'];
+  const colors=['#007f83','#9171b9','#d99430','#6b8fa0','#899493'];
+  const groups=[...labels,'Otros'].map((type,i)=>({label:({Pagante:'Pagantes',Becado:'Becas'})[type]||type,count:courses.filter(c=>type==='Otros'?!labels.includes(c.type):c.type===type).length,color:colors[i]})).filter(x=>x.count>0).map(x=>({...x,width:(courses.length?x.count/courses.length*100:0)+'%'}));
+  return {total:courses.length,people:enrolled.length,multi:enrolled.filter(s=>Q.activeCourses(s).length>1).length,trial:people.filter(s=>s.program==='Reto 21').length,groups};
+ }
+ window.VX={attendance,summary,availability};
+ // A single total with a mutually exclusive breakdown of instrument enrollments.
+ const summaryHTML=`<section class="card vx-summary"><div class="cb"><div class="vx-summary-head"><div><span class="eyebrow">TOTAL DE INSCRIPCIONES POR INSTRUMENTO</span><div class="vx-big">{{enrollmentSummary.total}}</div><p>{{enrollmentSummary.people}} alumnos únicos · {{enrollmentSummary.multi}} estudian varios instrumentos</p></div><div class="vx-trial"><b>{{enrollmentSummary.trial}}</b><span>Reto 21</span><small>Pruebas gratuitas · aparte del total</small></div></div><div class="vx-breakdown"><sc-for list="{{enrollmentSummary.groups}}" as="g"><span style="width:{{g.width}};background:{{g.color}}" title="{{g.label}}: {{g.count}}"></span></sc-for></div><div class="vx-legend"><sc-for list="{{enrollmentSummary.groups}}" as="g"><div><i style="background:{{g.color}}"></i>{{g.label}} <b>{{g.count}}</b></div></sc-for></div><p class="xs m">Cada instrumento cuenta una vez: un alumno con piano y guitarra suma 2 inscripciones. El desglose suma el total.</p></div></section>`;
+ ['DirAlumnos','DirDashboard'].forEach(name=>{
+  const t=document.getElementById('tpl-'+name),stats=t.content.querySelector('.fx-stats');
+  if(stats){stats.parentElement.innerHTML=summaryHTML;}
+  const base=App.screens[name].cls.prototype.renderVals;App.screens[name].cls.prototype.renderVals=function(){return {...base.call(this),enrollmentSummary:summary(PL.S.session.site||'')};};
+ });
+ // Attendance reflects explicit past records, never an invented exam threshold.
+ const progressHTML=`<section class="card vx-progress"><div class="cb"><div class="vx-progress-head"><div><h2 class="h2">Asistencia y progreso</h2><p class="sub">{{progress.instrument}} · Nivel {{progress.level}}</p></div><strong class="vx-percent">{{progress.percentText}}</strong></div><div class="vx-progress-track" role="progressbar" aria-label="Porcentaje de asistencia registrada" aria-valuenow="{{progress.pct}}" aria-valuemin="0" aria-valuemax="100"><span style="width:{{progress.barWidth}}"></span></div><p class="s">{{progress.present}} asistidas de {{progress.total}} clases con asistencia registrada · {{progress.absent}} ausencias</p><div class="vx-metrics"><div><b>{{progress.activeTime}}</b><small>Tiempo activo en la escuela</small></div><div><b>{{progress.ensemble}}</b><small>Ensambles asistidos · opcionales</small></div><div><b>{{progress.period}}</b><small>Periodo de los registros</small></div></div><p class="xs m">Asistidas ÷ (asistidas + ausencias). No incluye clases futuras, pendientes, feriados, cancelaciones ni ensambles. Es un indicador de asistencia; todavía no habilita exámenes ni cambia el nivel.</p><p class="xs m">{{progress.ensembleInfo}}</p></div></section>`;
+ const ficha=document.getElementById('tpl-DirFicha');const fx=document.createElement('div');fx.innerHTML=progressHTML;ficha.content.querySelector('main').insertBefore(fx,ficha.content.querySelector('main > .g21'));
+ const fbase=App.screens.DirFicha.cls.prototype.renderVals;App.screens.DirFicha.cls.prototype.renderVals=function(){const v=fbase.call(this);return {...v,progress:attendance(Q.student(v.s.id))};};
+ // A dedicated student screen within the existing teacher role.
+ const teacherTemplate=document.createElement('template');teacherTemplate.id='tpl-ProfFicha';teacherTemplate.dataset.title='Alumno · asistencia';teacherTemplate.innerHTML=document.getElementById('tpl-ProfAlumnos').innerHTML;
+ teacherTemplate.content.querySelector('.ph').innerHTML='<a class="btn sec sm" href="#/ProfAlumnos">← Mis alumnos</a><div style="flex:1"><div class="t">{{studentName}}</div><small>{{studentInfo}}</small></div>';
+ teacherTemplate.content.querySelector('.pb').innerHTML=`<sc-if value="{{denied}}"><div class="al">El alumno no está asignado a este profesor.</div></sc-if><sc-if value="{{!denied}}"><div class="chips"><sc-for list="{{courseTabs}}" as="c"><button class="{{c.cls}}" sc-camel-on-click="{{c.pick}}">{{c.name}}</button></sc-for></div>${progressHTML}<section class="card"><div class="ch"><h2 class="h2">Clases y fechas de asistencia</h2><span class="bg">{{progress.total}} registros</span></div><sc-for list="{{progress.rows}}" as="r"><div class="row"><div class="grow"><b>{{r.day}} · {{r.time}}</b><p>{{r.instrument}} · {{r.teacher}}</p></div><span class="{{r.badge}}">{{r.state}}</span></div></sc-for><sc-if value="{{progress.empty}}"><div class="cb s m">Todavía no hay asistencias registradas para este instrumento.</div></sc-if></section><section class="card cb"><h2 class="h2">Contacto</h2><p>{{contactLabel}}: {{contactName}}</p><p>{{contactPhone}}</p><p class="xs m">Inicio de matrícula actual: {{progress.since}} · Créditos disponibles de este instrumento: {{credits}}</p></section></sc-if>`;
+ document.body.appendChild(teacherTemplate);
+ function myCourses(s){return s.courses.filter(c=>Q.block(c.b)?.t===PL_ME_T||(c.flexVersions||[]).some(v=>v.slots.some(x=>Q.block(x.b)?.t===PL_ME_T))||PL.S.flexBookings.some(r=>r.cid===c.id&&Q.block(r.b)?.t===PL_ME_T));}
+ App.register('ProfFicha',class extends DCLogic{renderVals(){const s=Q.student(this.P.id),courses=s?myCourses(s):[];if(!s||!courses.length)return {denied:true};const c=courses.find(c=>c.id===(this.state.cid||this.P.c))||courses[0];return {denied:false,studentName:Q.name(s),studentInfo:c.inst+' · '+c.level+' · '+Q.site(s.site).n,courseTabs:courses.map(x=>({name:x.inst,cls:x.id===c.id?'chip on':'chip',pick:()=>this.setState({cid:x.id})})),progress:attendance(s,c.inst),contactLabel:D.age(s.birth)>=18?'Contacto':'Representante',contactName:D.age(s.birth)>=18?Q.name(s):s.rep.n,contactPhone:D.age(s.birth)>=18?(s.contact?.tel||'Sin teléfono registrado'):(s.rep.tel||'Sin teléfono registrado'),credits:Q.avail(s,c.inst).length};}});
+ const list=document.getElementById('tpl-ProfAlumnos');list.innerHTML=list.innerHTML.replace('<div style="text-align: right"><span class="{{k.sc}}">','<div style="text-align: right"><span class="{{k.sc}}">').replace('{{k.r}} recup.</div>','{{k.r}} recup.</div><div class="xs" style="color:#007f83;margin-top:6px">Ver asistencia →</div>');
+ const teacherBase=App.screens.ProfAlumnos.cls.prototype.renderVals;App.screens.ProfAlumnos.cls.prototype.renderVals=function(){const v=teacherBase.call(this);v.kids.forEach(k=>{const s=PL.S.students.find(s=>s.courses.some(c=>s.id+c.id===k.id)),c=s?.courses.find(c=>s.id+c.id===k.id);if(s&&c){k.toggle=()=>App.go('ProfFicha?id='+s.id+'&c='+c.id);k.open=false;}});return v;};
+ // Replace pending action buttons with one draggable card per student / instrument.
+ const tileHTML=`<sc-for list="{{pending}}" as="p"><div class="row vx-pending-student" draggable="true" data-student="{{p.sid}}" data-course="{{p.cid}}" data-source-key="{{p.sourceKey}}" data-source-date="{{p.sourceDate}}"><div class="grow"><b>⠿ {{p.name}}</b><p>{{p.inst}} · {{p.count}}</p><span class="{{p.cls}}">{{p.reason}}</span><a class="lnk vx-pick-link" href="{{p.href}}">Elegir en calendario →</a></div></div></sc-for>`;
+ ['DirSemana','DirCalendario','DirCalendarioDia','RecHoy'].forEach(name=>{
+  const t=document.getElementById('tpl-'+name);let h=t.innerHTML;const begin=h.indexOf('<sc-for list="{{pending}}" as="p">'),end=h.indexOf('</sc-for>',begin)+9;if(begin>=0)h=h.slice(0,begin)+tileHTML+h.slice(end);
+  h=h.replace('Usa Asignar horario para colocar al alumno y Confirmar horario para aceptar una propuesta.','Arrastra un alumno: solo se muestran cupos compatibles con su instrumento. También puedes elegir en el calendario.');
+  h=h.replace('Asigna el horario o confirma la reserva desde aquí.','Arrastra al alumno o elige su clase en el calendario.');
+  h=h.replace('Recepción asigna y confirma directamente. Semana seleccionada.','Recepción coloca al alumno en un cupo disponible.');t.innerHTML=h;
+  const base=App.screens[name].cls.prototype.renderVals;App.screens[name].cls.prototype.renderVals=function(){const v=base.call(this);v.pending=(v.pending||[]).map(p=>{const params=new URLSearchParams(p.href.split('?')[1]);return {...p,sid:params.get('s'),cid:params.get('c'),sourceKey:params.get('key')||'',sourceDate:params.get('date')||''};});return v;};
+ });
+ // Use the actual selected block as a drag target in day view too.
+ const dt=document.getElementById('tpl-DirCalendarioDia');dt.innerHTML=dt.innerHTML.replace('<button class="{{c.cls}}" sc-camel-on-click="{{c.pick}}"','<button data-drop-b="{{c.bid}}" data-drop-date="{{date}}" class="{{c.cls}}" sc-camel-on-click="{{c.pick}}"');
+ const db=App.screens.DirCalendarioDia.cls.prototype.renderVals;App.screens.DirCalendarioDia.cls.prototype.renderVals=function(){const v=db.call(this);v.grid.forEach(r=>r.cells.forEach((cell,i)=>{const b=Q.blocksOn(v.date,PL.S.session.site||'au').find(b=>b.time===r.t&&b.t===v.teachers[i]?.id);cell.bid=b?.id||'';}));return v;};
+ // Reto 21 example is a placed trial, not a confirmation workflow.
+ function correctTrial(){if(PL.S.visualRevision3)return;const s=PL.S.students.find(s=>s.program==='Reto 21'&&s.last==='Demo Reto');if(s)PL.S.flexBookings.filter(r=>r.sid===s.id&&['2026-10-01','2026-10-06'].includes(r.date)&&r.status==='proposed').forEach(r=>r.status='confirmed');PL.S.visualRevision3=true;PL.save();}
+ correctTrial();const reset=A.reset;A.reset=()=>{reset();correctTrial();};
+ // Visual scheduling: all available tiles belong to the selected instrument.
+ const scheduling=document.getElementById('tpl-DirProgramar');
+ scheduling.content.querySelector('main').innerHTML=`<div class="head"><div><h1 class="h1">Horario del alumno</h1><p class="sub">Elige directamente una clase en el calendario.</p></div><a class="btn sec" href="#/DirSemana?d={{weekStart}}">Volver al calendario</a></div><div class="card cb vx-picker-controls"><label class="fld">Alumno<select class="inp" aria-label="Alumno" sc-options="{{students}}" value="{{sid}}" sc-camel-on-change="{{pickStudent}}"></select></label><label class="fld">Instrumento<select class="inp" aria-label="Instrumento" sc-options="{{courses}}" value="{{cid}}" sc-camel-on-change="{{pickCourse}}"></select></label><div><span class="bg">{{instrument}}</span><p class="xs m">Solo cupos disponibles · misma sede · sin cruces</p></div></div><div class="chips"><button class="{{singleClass}}" sc-camel-on-click="{{single}}">Solo esta clase</button><sc-if value="{{regular}}"><button class="{{habitualClass}}" sc-camel-on-click="{{habitual}}">Dos horarios habituales</button><button class="{{variableClass}}" sc-camel-on-click="{{variable}}">Horario variable</button></sc-if></div><sc-if value="{{showCalendar}}"><div class="chips"><button class="chip" sc-camel-on-click="{{prev}}">‹ Semana anterior</button><b>{{weekLabel}}</b><button class="chip" sc-camel-on-click="{{next}}">Semana siguiente ›</button></div><div class="vx-pick-week"><sc-for list="{{days}}" as="day"><section class="vx-pick-day"><b>{{day.label}}</b><sc-for list="{{day.slots}}" as="slot"><button class="{{slot.cls}}" data-pick-b="{{slot.bid}}" data-pick-date="{{slot.date}}" sc-camel-on-click="{{slot.pick}}"><b>{{slot.time}}</b><span>{{instrument}}</span><small>{{slot.teacher}}</small><small>{{slot.room}} · {{slot.free}} cupos</small><sc-if value="{{slot.selected}}"><strong>✓ Seleccionado</strong></sc-if></button></sc-for><sc-if value="{{day.empty}}"><p class="xs m">{{day.emptyText}}</p></sc-if></section></sc-for></div></sc-if><div class="card cb vx-save"><b>{{selectionText}}</b><sc-if value="{{recurring}}"><label class="fld">Aplicar desde<input class="inp" name="visualFrom" type="date" value="{{from}}" sc-camel-on-change="{{setFrom}}"></label></sc-if><p class="xs m">{{saveInfo}}</p><button class="btn" sc-camel-on-click="{{save}}" disabled="{{saveDisabled}}">Guardar horario</button><sc-if value="{{error}}"><div class="al" role="alert">{{error}}</div></sc-if></div>`;
+ App.register('DirProgramar',class extends DCLogic{renderVals(){
+  const st=this.state,block=Q.block(this.P.b),site=PL.S.session.site||block?.site||'au',students=Q.siteStudents(site).filter(Q.isActive);
+  let s=Q.student(st.sid||this.P.s);if(!s||!students.includes(s))s=students.find(s=>!block||Q.activeCourses(s).some(c=>c.inst===block.inst))||students[0];
+  if(!s)return {students:[],courses:[],days:[],error:'No hay alumnos activos.',saveDisabled:true};
+  const courses=Q.activeCourses(s),c=courses.find(c=>c.id===(st.cid||this.P.c))||courses.find(c=>c.inst===block?.inst)||courses[0];
+  if(!c)return {students:[],courses:[],days:[],error:'No tiene instrumentos activos.',saveDisabled:true};
+  const source=sourceOf(this.P.key,this.P.date),mode=st.mode||'single',recurring=mode==='habitual',from=st.from||((this.P.date&&this.P.date>D.TODAY)?this.P.date:D.TODAY),start=st.week||FX.week(this.P.target||this.P.date||D.TODAY);
+  st.selected ||= [];
+  const days=Array.from({length:7},(_,i)=>{const date=D.add(start,i),holiday=Q.holiday(date);const slots=PL.S.blocks.filter(b=>b.site===s.site&&b.inst===c.inst&&b.days.includes(D.dow(date))&&!availability(s,c,b.id,date,source,recurring)).sort((a,b)=>a.time.localeCompare(b.time)).map(b=>{const selected=st.selected.some(r=>recurring?r.b===b.id&&D.dow(r.date)===D.dow(date):r.b===b.id&&r.date===date);return {bid:b.id,date,time:b.time,teacher:Q.teacher(b.t).n,room:b.aula,free:Math.max(0,b.cap-Q.occ(b.id,date)),selected,cls:'vx-time'+(selected?' selected':''),pick:()=>{if(recurring){if(selected)st.selected=st.selected.filter(r=>!(r.b===b.id&&D.dow(r.date)===D.dow(date)));else if(st.selected.length<2)st.selected.push({b:b.id,date});else return A.toast('Ya elegiste dos horarios. Quita uno para cambiarlo.');}else st.selected=[{b:b.id,date}];this.setState({error:''});}};});return {label:D.short(date),slots,empty:!slots.length,emptyText:holiday?holiday.n:'Sin cupos disponibles'};});
+  const changeMode=mode=>this.setState({mode,selected:[],error:''});
+  return {students:students.map(s=>({v:s.id,l:Q.name(s)+(s.program==='Reto 21'?' · Reto 21':'')})),courses:courses.map(c=>({v:c.id,l:c.inst})),sid:s.id,cid:c.id,instrument:c.inst,regular:s.program!=='Reto 21',pickStudent:e=>{this.P.key='';this.P.c='';this.setState({sid:e.target.value,cid:null,selected:[],error:''});},pickCourse:e=>{this.P.key='';this.setState({cid:e.target.value,selected:[],error:''});},singleClass:mode==='single'?'chip on':'chip',habitualClass:recurring?'chip on':'chip',variableClass:mode==='variable'?'chip on':'chip',single:()=>changeMode('single'),habitual:()=>changeMode('habitual'),variable:()=>changeMode('variable'),showCalendar:mode!=='variable',recurring,from,setFrom:e=>this.setState({from:e.target.value}),days,weekStart:start,weekLabel:D.short(start)+' – '+D.short(D.add(start,6)),prev:()=>this.setState({week:D.add(start,-7)}),next:()=>this.setState({week:D.add(start,7)}),selectionText:mode==='variable'?'Sin horarios recurrentes':st.selected.length?st.selected.map(r=>D.short(r.date)+' '+Q.block(r.b).time).join(' · '):recurring?'Selecciona dos clases semanales':'Selecciona una clase disponible',saveInfo:source?'Se mueve únicamente esta reserva.':recurring?'Se repetirán estos dos horarios; podrás mover una clase cuando lo necesites.':mode==='variable'?'Las clases se asignan desde el calendario semanal.':'La clase queda asignada por recepción / dirección.',saveDisabled:mode==='variable'?false:st.selected.length!==(recurring?2:1),error:st.error||'',save:()=>{
+   let error='';if(mode==='single'){const selected=st.selected[0];if(!selected)return;error=FX.book(s.id,c.id,selected.b,selected.date,'confirmed',source);}else error=FX.setPattern(s.id,c.id,mode==='variable'?'variable':'habitual',st.selected.map(r=>({b:r.b,day:D.dow(r.date)})),this.f('visualFrom')||from);
+   if(error)return this.setState({error});PL.save();A.toast('Horario guardado en el calendario.');App.go('DirSemana?d='+(st.selected[0]?.date||from));
+  }};
+ }});
+ // Native drag: hide incompatible blocks during the gesture and revalidate on drop.
+ let drag=null;
+ function clearDrag(){document.querySelectorAll('.vx-drop-hidden,.vx-drop-valid').forEach(el=>el.classList.remove('vx-drop-hidden','vx-drop-valid'));document.getElementById('vx-drag-tip')?.remove();document.body.classList.remove('vx-dragging');drag=null;}
+ document.addEventListener('dragstart',e=>{
+  const tile=e.target.closest('[data-student]'),existing=e.target.closest('[data-reservation]');if(!tile&&!existing)return;
+  let s,c,source;if(tile){({s,c}=lookup(tile.dataset.student,tile.dataset.course));source=sourceOf(tile.dataset.sourceKey,tile.dataset.sourceDate);}else{source=sourceOf(existing.dataset.reservation,existing.dataset.date);if(source)({s,c}=lookup(source.sid,source.cid));}
+  if(!s||!c){e.preventDefault();return;}e.stopImmediatePropagation();drag={s,c,source};e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',JSON.stringify({sid:s.id,cid:c.id}));
+  let count=0;document.querySelectorAll('[data-drop-b]').forEach(el=>{const valid=!!el.dataset.dropB&&!availability(s,c,el.dataset.dropB,el.dataset.dropDate,source);el.classList.toggle('vx-drop-hidden',!valid);el.classList.toggle('vx-drop-valid',valid);if(valid)count++;});
+  document.body.classList.add('vx-dragging');const tip=document.createElement('div');tip.id='vx-drag-tip';tip.textContent=Q.name(s)+' · '+c.inst+' · '+(count?count+' cupos compatibles visibles':'sin cupos disponibles en esta vista');document.body.appendChild(tip);
+ },true);
+ document.addEventListener('dragover',e=>{if(!drag)return;const el=e.target.closest('[data-drop-b]');if(el?.classList.contains('vx-drop-valid')){e.preventDefault();e.dataTransfer.dropEffect='move';}else if(e.dataTransfer)e.dataTransfer.dropEffect='none';e.stopImmediatePropagation();},true);
+ document.addEventListener('drop',e=>{if(!drag)return;e.preventDefault();e.stopImmediatePropagation();const el=e.target.closest('[data-drop-b]'),data=drag;const error=!el?'Suelta al alumno sobre una clase disponible.':availability(data.s,data.c,el.dataset.dropB,el.dataset.dropDate,data.source);if(error){clearDrag();A.toast(error);return;}const result=FX.book(data.s.id,data.c.id,el.dataset.dropB,el.dataset.dropDate,'confirmed',data.source);clearDrag();if(result)A.toast(result);else{A.commit();A.toast('Alumno asignado a '+data.c.inst+'.');}},true);
+ document.addEventListener('dragend',clearDrag,true);
+ const style=document.createElement('style');style.textContent=`.vx-summary{margin-bottom:20px}.vx-summary-head,.vx-progress-head{display:flex;justify-content:space-between;align-items:center;gap:24px}.vx-big{font-size:44px;font-weight:750;color:#006e72;line-height:1.2}.vx-trial{display:flex;flex-direction:column;padding:16px 24px;background:#f4effa;border-radius:12px;gap:4px}.vx-trial b{font-size:26px;color:#78539d}.vx-trial small{font-size:11px}.vx-breakdown{display:flex;height:12px;overflow:hidden;border-radius:7px;margin:20px 0 14px}.vx-legend{display:flex;gap:24px;flex-wrap:wrap}.vx-legend div{display:flex;gap:8px;align-items:center;font-size:14px}.vx-legend i{width:10px;height:10px;border-radius:50%}.vx-progress{margin:18px 0}.vx-progress-track{height:14px;background:#e7efef;border-radius:9px;overflow:hidden;margin:18px 0 12px}.vx-progress-track span{display:block;height:100%;background:#078888;border-radius:9px}.vx-percent{font-size:30px;color:#007c7f}.vx-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:14px 0}.vx-metrics small{display:block;margin-top:5px;color:#5d7479}.vx-picker-controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:18px}.vx-pick-week{display:grid;grid-template-columns:repeat(7,minmax(125px,1fr));overflow-x:auto;gap:8px;background:white;border:1px solid #dce8e7;border-radius:14px;padding:14px;margin-bottom:18px}.vx-pick-day{display:flex;flex-direction:column;gap:12px;min-height:210px;font-size:13px}.vx-time{display:flex;flex-direction:column;gap:5px;border:1px solid #badcd8;border-radius:10px;background:#f3faf8;padding:13px 9px;color:#20484b;text-align:left;cursor:pointer;font:inherit}.vx-time small{font-size:11px}.vx-time:hover,.vx-time.selected{border:2px solid #00898a;background:#dff3ed;padding:12px 8px}.vx-save{display:flex;align-items:flex-start;flex-direction:column;gap:14px}.vx-pending-student{cursor:grab;border-left:3px solid #51aaa1}.vx-pending-student:active{cursor:grabbing}.vx-pick-link{display:block;margin-top:10px;font-size:12px}.vx-drop-hidden{visibility:hidden;opacity:.08;pointer-events:none}.fx-block.vx-drop-hidden{display:none}.vx-drop-valid{outline:2px solid #159b89;outline-offset:1px;background:#effbf5!important}.vx-dragging .fx-student{pointer-events:none}#vx-drag-tip{position:fixed;top:35px;left:50%;transform:translateX(-50%);background:#075b5d;color:white;border-radius:12px;padding:14px 24px;font-size:14px;box-shadow:0 8px 30px #0003;z-index:10000;pointer-events:none}.screen .vx-metrics b{font-size:16px}@media(max-width:750px){.vx-summary-head{align-items:flex-start;flex-direction:column}.vx-metrics,.vx-picker-controls{grid-template-columns:1fr}.vx-pick-week{grid-template-columns:repeat(7,145px)}.vx-percent{font-size:24px}}`;
+ document.head.appendChild(style);
+})();
+
+/* Revisión 5 oct: arrastre de cualquier alumno, horario en calendario completo e historial de asistencia. */
+(function(){
+ const {Q,A,D}=PL;
+ const SINCE=Object.keys(PL.S.att).map(k=>k.split('|')[1]).sort()[0]||'2026-09-14';
+ const hash=t=>{let h=7;for(const ch of t)h=(h*31+ch.charCodeAt(0))>>>0;return h;};
+ // Historial de demostración anterior a los registros detallados (no cambia semáforos ni recuperaciones).
+ function history(s,c){
+  const from=c.start||Q.startOf(s);if(s.program==='Reto 21'||from>=SINCE)return {present:0,total:0,ens:0};
+  const weeks=Math.floor((D.p(SINCE)-D.p(from))/6048e5),total=Math.round(weeks*2*0.95),h=hash(s.id+c.inst),sl=Q.sem(s);
+  const pct=sl==='Rojo'?55+h%12:sl==='Amarillo'?70+h%10:80+h%15;
+  return {present:Math.round(total*pct/100),total,ens:weeks>=16?Math.round(weeks*(0.15+(h%25)/100)):0};
+ }
+ function merge(p,s,inst){
+  const courses=Q.activeCourses(s).filter(c=>!inst||c.inst===inst);
+  const row=(base,cs)=>{const h=cs.reduce((a,c)=>{const x=history(s,c);return {present:a.present+x.present,total:a.total+x.total,ens:Math.max(a.ens,x.ens)};},{present:0,total:0,ens:0});const present=base.present+h.present,total=base.total+h.total,pct=total?Math.round(present/total*100):0;return {present,total,absent:total-present,pct,ens:base.ensemble+h.ens};};
+  const r=row(p,courses);
+  const start=courses.map(c=>c.start||Q.startOf(s)).sort()[0]||Q.startOf(s);
+  const byCourse=courses.map(c=>{const x=row(VX.attendance(s,c.inst),[c]);return {inst:c.inst,level:c.level,type:c.type,pct:x.pct,barWidth:x.pct+'%',text:x.total?x.present+' de '+x.total+' clases · '+x.pct+'%':'Sin clases registradas',since:'Desde '+D.dmy(c.start||Q.startOf(s))};});
+  return {...p,present:r.present,total:r.total,absent:r.absent,pct:r.pct,percentText:r.total?r.pct+'%':'Sin registros',barWidth:r.pct+'%',hasData:r.total>0,ensemble:r.ens,
+   ensembleInfo:r.ens?'Ensamble: '+r.ens+' clases asistidas. Es opcional y no afecta el porcentaje.':'Aún no asiste a ensambles (opcional).',
+   period:r.total?D.dmy(start)+' – hoy':'Sin fechas registradas',rowCount:(p.rows||[]).length,byCourse,multi:byCourse.length>1,
+   historyNote:'Historial de demostración desde '+D.dmy(start)+'; el detalle por fecha empieza el '+D.dmy(SINCE)+'.'};
+ }
+ window.VX.progress=merge;
+ // Ficha de dirección y del profesor
+ const courseRows=`<sc-if value="{{progress.multi}}"><div class="vx-courses"><sc-for list="{{progress.byCourse}}" as="pc"><div class="vx-course"><div class="vx-course-head"><b>{{pc.inst}} · {{pc.level}}</b><span class="xs m">{{pc.text}}</span></div><div class="vx-progress-track sm"><span style="width:{{pc.barWidth}}"></span></div><small class="xs m">{{pc.since}} · {{pc.type}}</small></div></sc-for></div></sc-if><p class="xs m">{{progress.historyNote}}</p>`;
+ ['tpl-DirFicha','tpl-ProfFicha'].forEach(id=>{const t=document.getElementById(id);if(!t)return;t.innerHTML=t.innerHTML.replace('<span class="bg">{{progress.total}} registros</span>','<span class="bg">{{progress.rowCount}} con fecha</span>').replace('<p class="xs m">Asistidas ÷ (asistidas + ausencias).',courseRows+'<p class="xs m">Asistidas ÷ (asistidas + ausencias).').replace('{{progress.present}} asistidas de {{progress.total}} clases con asistencia registrada · {{progress.absent}} ausencias','{{progress.present}} clases asistidas de {{progress.total}} · {{progress.absent}} ausencias · 2 clases por semana por instrumento').replace('Asistidas ÷ (asistidas + ausencias). No incluye clases futuras, pendientes, feriados, cancelaciones ni ensambles. Es un indicador de asistencia; todavía no habilita exámenes ni cambia el nivel.','Asistidas ÷ clases dadas. No cuenta feriados, cancelaciones ni ensambles. Todavía no habilita la prueba de nivel.');});
+ const fb=App.screens.DirFicha.cls.prototype.renderVals;App.screens.DirFicha.cls.prototype.renderVals=function(){const v=fb.call(this),s=Q.student(v.s.id);return {...v,progress:merge(v.progress,s,'')};};
+ const pb=App.screens.ProfFicha.cls.prototype.renderVals;App.screens.ProfFicha.cls.prototype.renderVals=function(){const v=pb.call(this);if(v.denied)return v;const s=Q.student(this.P.id),inst=v.progress.instrument;return {...v,progress:merge(v.progress,s,inst)};};
+ // Mis alumnos: clases asistidas visibles en cada tarjeta
+ const pl=document.getElementById('tpl-ProfAlumnos');pl.innerHTML=pl.innerHTML.replace('<div class="xs m">{{k.l}} · {{k.h}}</div>','<div class="xs m">{{k.l}} · {{k.h}}</div><div class="vx-mini"><span style="width:{{k.pctW}}"></span></div><div class="xs" style="color:#2d5a5e">{{k.att}}</div>');
+ const pa=App.screens.ProfAlumnos.cls.prototype.renderVals;App.screens.ProfAlumnos.cls.prototype.renderVals=function(){const v=pa.call(this);v.kids.forEach(k=>{const s=PL.S.students.find(s=>s.courses.some(c=>s.id+c.id===k.id)),c=s?.courses.find(c=>s.id+c.id===k.id);if(!s||!c)return;const p=merge(VX.attendance(s,c.inst),s,c.inst);k.pctW=p.pct+'%';k.att=s.program==='Reto 21'?'Reto 21 · prueba gratuita':p.total?p.present+' de '+p.total+' clases · '+p.pct+'% asistencia':'Sin clases registradas';});return v;};
+ // Panel lateral: pendientes o todos los alumnos, siempre arrastrables
+ const tabs='<div class="cb vx-tabs"><button class="{{tabPendingCls}}" sc-camel-on-click="{{tabPending}}">Pendientes</button><button class="{{tabAllCls}}" sc-camel-on-click="{{tabAll}}">Todos</button></div>';
+ ['DirSemana','DirCalendarioDia'].forEach(name=>{
+  const t=document.getElementById('tpl-'+name);let h=t.innerHTML;const i=h.indexOf('<sc-for list="{{pending}}" as="p"><div class="row vx-pending-student"');if(i>=0)h=h.slice(0,i)+tabs+h.slice(i);
+  h=h.replace('<b>{{day.label}}</b><small>{{day.date}}</small>','<b>{{day.label}}</b>');t.innerHTML=h;
+  const base=App.screens[name].cls.prototype.renderVals;App.screens[name].cls.prototype.renderVals=function(){
+   const v=base.call(this),st=this.state,all=!!st.vxAll;
+   v.tabPendingCls=all?'chip':'chip on';v.tabAllCls=all?'chip on':'chip';v.tabPending=()=>this.setState({vxAll:false});v.tabAll=()=>this.setState({vxAll:true});
+   if(!all)return v;
+   const site=PL.S.session.site||'au',start=FX.week(v.start||v.date||D.TODAY),q=(st.search||'').toLowerCase();
+   const list=Q.siteStudents(site).filter(Q.isActive).flatMap(s=>Q.activeCourses(s).map(c=>{let n=0;for(let i=0;i<7;i++){const d=D.add(start,i);if(!Q.holiday(d))n+=FX.slots(s,c,d).length;}const trial=s.program==='Reto 21';return {sid:s.id,cid:c.id,sourceKey:'',sourceDate:'',name:Q.name(s),inst:c.inst,count:trial?n+' prueba(s) esta semana':n+'/2 esta semana',reason:trial?'Reto 21':n>=2?'Semana completa':'Puede agregar clase',cls:trial?'bg pu':n>=2?'bg mu':'bg wr',href:'#/DirProgramar?s='+s.id+'&c='+c.id+'&date='+start};}))
+    .filter(p=>!q||(p.name+' '+p.inst).toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name));
+   v.pending=list;v.noPending=!list.length;return v;};
+ });
+ // Horario del alumno: todas las clases del instrumento, con motivo cuando no se puede elegir.
+ const short=e=>/cupo/.test(e)?'Lleno':/empezado/.test(e)?'Ya pasó':/otra clase|ensamble/.test(e)?'Cruce de horario':/dos clases/.test(e)?'Ya tiene 2 clases':/cerrad/.test(e)?'Cerrado':/profesor o aula|profesor o el aula/.test(e)?'Profesor/aula ocupados':'No disponible';
+ const sch=document.getElementById('tpl-DirProgramar');sch.innerHTML=sch.innerHTML.replace('Solo cupos disponibles · misma sede · sin cruces','Solo se muestran clases de este instrumento en su sede').replace('<small>{{slot.room}} · {{slot.free}} cupos</small>','<small>{{slot.room}} · {{slot.free}} cupos</small><sc-if value="{{slot.current}}"><em>Horario actual</em></sc-if><sc-if value="{{slot.reason}}"><em>{{slot.reason}}</em></sc-if>').replace('<sc-if value="{{day.empty}}"><p class="xs m">{{day.emptyText}}</p></sc-if>','<sc-if value="{{day.empty}}"><p class="xs m">{{day.emptyText}}</p></sc-if>').replace('<p class="sub">Elige directamente una clase en el calendario.</p>','<p class="sub">Toca una clase del calendario para elegirla. Las clases que no se pueden usar se muestran en gris con el motivo.</p>');
+ const Prog=App.screens.DirProgramar.cls;
+ App.register('DirProgramar',class extends Prog{renderVals(){
+  const st=this.state;
+  if(!st.vxInit){st.vxInit=true;const s=Q.student(this.P.s),c=s?.courses.find(c=>c.id===this.P.c);
+   if(s&&c&&!this.P.key&&s.program!=='Reto 21'){const ver=FX.version(c,D.TODAY);if(ver.mode==='habitual'&&ver.slots.length===2){st.mode='habitual';const wk=FX.week(this.P.date||D.TODAY);st.selected=ver.slots.map(x=>{for(let i=0;i<7;i++){const d=D.add(wk,i);if(D.dow(d)===x.day)return {b:x.b,date:d};}}).filter(Boolean);}}}
+  const v=super.renderVals();if(!v.days||!v.sid)return v;
+  const s=Q.student(v.sid),c=s.courses.find(c=>c.id===v.cid),source=this.P.key?FX.reservations(this.P.date).find(r=>r.key===this.P.key):null,recurring=v.recurring,start=v.weekStart;
+  v.days=v.days.map((day,i)=>{const date=D.add(start,i),holiday=Q.holiday(date);
+   const mine=[];for(const r of FX.slots(s,c,date))mine.push(r.b);
+   const slots=holiday?[]:PL.S.blocks.filter(b=>b.site===s.site&&b.inst===c.inst&&b.days.includes(D.dow(date))).sort((a,b)=>a.time.localeCompare(b.time)).map(b=>{
+    const ok=day.slots.find(x=>x.bid===b.id);if(ok)return {...ok,current:mine.includes(b.id)&&!ok.selected,reason:''};
+    const err=VX.availability(s,c,b.id,date,source,recurring),current=mine.includes(b.id);
+    return {bid:b.id,date,time:b.time,teacher:Q.teacher(b.t).n,room:b.aula,free:Math.max(0,b.cap-Q.occ(b.id,date)),selected:false,current,reason:current?'':short(err),cls:'vx-time off'+(current?' current':''),pick:()=>A.toast(current?'Esta ya es una clase del alumno.':err)};});
+   return {...day,slots,empty:!slots.length,emptyText:holiday?holiday.n:'No hay clases de '+c.inst+' este día'};});
+  return v;
+ }});
+ const css=document.createElement('style');css.textContent=`.vx-tabs{display:flex;gap:8px;padding-top:0}.vx-tabs .chip{flex:1;white-space:nowrap}.vx-mini{height:6px;background:#e7efef;border-radius:4px;overflow:hidden;margin:6px 0 3px;max-width:240px}.vx-mini span{display:block;height:100%;background:#078888}.vx-courses{display:flex;flex-direction:column;gap:12px;margin:6px 0 12px}.vx-course-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.vx-progress-track.sm{height:8px;margin:6px 0 4px}.vx-time.off{opacity:.55;background:#f3f5f5;cursor:not-allowed}.vx-time.off.current,.vx-time.current{opacity:1;border:2px dashed #078888;background:#eef8f7;cursor:default}.vx-time em{font-style:normal;font-size:11px;font-weight:600;color:#7a5c1e}.vx-time.current em{color:#006e72}`;document.head.appendChild(css);
+})();
 
   App.start();
 })();
